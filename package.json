@@ -14,7 +14,8 @@
 		"validate:data": "vite-node scripts/validate-data.mts",
 		"fetch:github": "node scripts/fetch-github.mjs",
 		"prebuild": "node scripts/fetch-github.mjs",
-		"predev": "node scripts/fetch-github.mjs"
+		"predev": "node scripts/fetch-github.mjs",
+		"precheck": "svelte-kit sync && node scripts/fetch-github.mjs"
 	},
 	"devDependencies": {
 		"@eslint/js": "^8.57.1",

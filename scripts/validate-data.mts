@@ -14,8 +14,6 @@ import features from "../src/data/features.ts";
 
 const IMAGE_EXT = /\.(png|jpe?g|webp|gif|svg|avif)$/i;
 
-/** @type {{ file: string, errors: string[] }} */
-const report = { file: "", errors: [] };
 let total = 0;
 
 const problems = [];
