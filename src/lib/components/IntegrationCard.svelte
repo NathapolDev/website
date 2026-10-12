@@ -1,197 +1,197 @@
 <script>
-    import Chip from "./Chip.svelte";
+	import Chip from "./Chip.svelte";
 
-    export let supportsV3 = false;
-    export let supportsV4 = false;
-    export let author = null;
-    export let title = null;
-    export let language = null;
-    export let url = null;
-    import {IconArrowDownLeft, IconInfoCircle} from '@tabler/icons-svelte';
-    import Divider from "./Divider.svelte";
+	export let supportsV3 = false;
+	export let supportsV4 = false;
+	export let author = null;
+	export let title = null;
+	export let language = null;
+	export let url = null;
+	import { IconArrowDownLeft } from "@tabler/icons-svelte";
+	import Divider from "./Divider.svelte";
 </script>
 
+<a href={url} class="cardIntegrations">
+	<div class="cardIntegrations__metaWrapper">
+		<div class="cardIntegrations__meta">
+			<div class="cardIntegrations__title">
+				<div
+					class="cardIntegrations__languageBlip cardIntegrations__languageBlip--{language}"
+				></div>
+				<p>{title}</p>
+			</div>
 
-<a href="{url}" class="cardIntegrations">
-    <div class="cardIntegrations__metaWrapper">
-        <div class="cardIntegrations__meta">
-            <div class="cardIntegrations__title">
-                <div class="cardIntegrations__languageBlip cardIntegrations__languageBlip--{language}"></div>
-                <p>{title}</p>
-            </div>
+			<div class="cardIntegrations__sub">
+				<p>{language}</p>
+				<Divider />
+				<p class="cardIntegrations__author">By <span>{author}</span></p>
+			</div>
+		</div>
 
-            <div class="cardIntegrations__sub">
-                <p>{language}</p>
-                <Divider />
-                <p class="cardIntegrations__author">By <span>{author}</span></p>
-            </div>
-        </div>
-
-        <span class="icon"><IconArrowDownLeft class="external-link" size={20} stroke={1.5} /></span>
-    </div>
-    <div class="cardIntegrations__versions">
-        {#if supportsV3}
-            <Chip type="outline" size="small">v3</Chip>
-        {/if}
-        {#if supportsV4}
-            <Chip type="outline-gradient-light" size="small">v4</Chip>
-        {/if}
-    </div>
+		<span class="icon"><IconArrowDownLeft class="external-link" size={20} stroke={1.5} /></span>
+	</div>
+	<div class="cardIntegrations__versions">
+		{#if supportsV3}
+			<Chip type="outline" size="small">v3</Chip>
+		{/if}
+		{#if supportsV4}
+			<Chip type="outline-gradient-light" size="small">v4</Chip>
+		{/if}
+	</div>
 </a>
 
 <style lang="scss">
-.cardIntegrations {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 16px;
-  gap: 8px;
-  width: fit-content;
-  min-width: 200px;
-  max-width: 250px;
+	.cardIntegrations {
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 16px;
+		gap: 8px;
+		width: fit-content;
+		min-width: 200px;
+		max-width: 250px;
 
-  background: var(--background-300);
-  border: 1px solid var(--background-400);
-  border-radius: var(--border-radius-large);
-  flex: 1;
-  transition: all 0.5s ease;
+		background: var(--background-300);
+		border: 1px solid var(--background-400);
+		border-radius: var(--border-radius-large);
+		flex: 1;
+		transition: all 0.5s ease;
 
-  &__metaWrapper {
-    display: grid;
-    grid-template-columns: auto 20px;
-    padding: 0;
-    gap: 8px;
-    width: 100%;
+		&__metaWrapper {
+			display: grid;
+			grid-template-columns: auto 20px;
+			padding: 0;
+			gap: 8px;
+			width: 100%;
 
-    .icon {
-      transition: all 0.5s ease-in-out 0.1s;
-    }
-  }
+			.icon {
+				transition: all 0.5s ease-in-out 0.1s;
+			}
+		}
 
-    &__title {
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--typography-100);
+		&__title {
+			font-weight: bold;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			color: var(--typography-100);
 
-        p {
-          margin: 0;
-        }
-    }
+			p {
+				margin: 0;
+			}
+		}
 
-    &__meta {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0;
-        color: var(--typography-300);
-    }
+		&__meta {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			padding: 0;
+			color: var(--typography-300);
+		}
 
-    &__sub {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 12px;
+		&__sub {
+			display: flex;
+			align-items: center;
+			gap: 4px;
+			font-size: 12px;
 
-        p {
-          margin: 0;
-          text-transform: capitalize;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          max-width: 80px;
-        }
-    }
+			p {
+				margin: 0;
+				text-transform: capitalize;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				max-width: 80px;
+			}
+		}
 
-    &__author {
-        color: var(--typography-100);
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        max-width: 50px;
-    }
+		&__author {
+			color: var(--typography-100);
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			max-width: 50px;
+		}
 
-    &__languageBlip {
-    height: 10px;
-    width: 10px;
-    border-radius: 100%;
+		&__languageBlip {
+			height: 10px;
+			width: 10px;
+			border-radius: 100%;
 
-        &--php {
-          background: #8A91BD;
-        }
+			&--php {
+				background: #8a91bd;
+			}
 
-        &--javascript {
-          background: #F0DB4F;
-        }
+			&--javascript {
+				background: #f0db4f;
+			}
 
-        &--typescript {
-          background: #F0DB4F;
-        }
+			&--typescript {
+				background: #f0db4f;
+			}
 
-        &--nodejs {
-          background: #8BC500;
-        }
+			&--nodejs {
+				background: #8bc500;
+			}
 
-        &--dart {
-          background: #00B4AB;
-        }
+			&--dart {
+				background: #00b4ab;
+			}
 
-        &--go {
-          background: #00ADD8;
-        }
+			&--go {
+				background: #00add8;
+			}
 
-        &--elixir {
-          background: #4e2a8e;
-        }
+			&--elixir {
+				background: #4e2a8e;
+			}
 
-        &--kotlin {
-          background: #f85d06;
-        }
+			&--kotlin {
+				background: #f85d06;
+			}
 
-        &--java {
-          background: #ED8B00;
-        }
+			&--java {
+				background: #ed8b00;
+			}
 
-        &--dotnet {
-          background: #68217A;
-        }
+			&--dotnet {
+				background: #68217a;
+			}
 
-        &--python {
-          background: #20639A;
-        }
+			&--python {
+				background: #20639a;
+			}
 
-        &--ruby {
-          background: #D22401;
-        }
-    }
+			&--ruby {
+				background: #d22401;
+			}
+		}
 
+		&:hover {
+			background: var(--background-400);
+			border: 1px solid var(--background-500);
 
-  &:hover {
-    background: var(--background-400);
-    border: 1px solid var(--background-500);
+			.cardIntegrations__metaWrapper {
+				.icon {
+					transform: translate(5px, -5px);
+				}
+			}
+		}
+	}
 
-    .cardIntegrations__metaWrapper {
-      .icon {
-        transform: translate(5px, -5px);
-      }
-    }
-  }
-}
+	@media screen and (max-width: 700px) {
+		.cardIntegrations {
+			min-width: unset;
+			max-width: unset;
+			width: 100%;
+			flex-direction: row;
+			flex: unset;
 
-@media screen and (max-width: 700px) {
-  .cardIntegrations {
-    min-width: unset;
-    max-width: unset;
-    width: 100%;
-    flex-direction: row;
-    flex: unset;
-
-    &__versions {
-      display: flex;
-      gap: 8px;
-    }
-  }
-}
+			&__versions {
+				display: flex;
+				gap: 8px;
+			}
+		}
+	}
 </style>
