@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { href } from "../helpers/href";
 	interface Props {
 		title?: string | null;
 		summary?: string | null;
@@ -9,7 +10,7 @@
 	let { title = null, summary = null, imageUrl = null, url = null }: Props = $props();
 </script>
 
-<a href={url} target="_blank" class="cardShowcase">
+<a href={href(url)} target="_blank" class="cardShowcase">
 	<div class="cardShowcase__image">
 		<img src={imageUrl} alt={title} loading="lazy" decoding="async" />
 	</div>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { href } from "../helpers/href";
 	interface Props {
 		type?: string;
 		size?: string;
@@ -27,7 +28,7 @@
 </script>
 
 <a
-	href={url}
+	href={href(url)}
 	target={url ? urlTarget : null}
 	class="button button--type-{type} button--size-{size}"
 	onclick={onClick}

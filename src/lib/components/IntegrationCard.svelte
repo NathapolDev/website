@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { href } from "../helpers/href";
 	import Chip from "./Chip.svelte";
 
 	import { IconArrowDownLeft } from "@tabler/icons-svelte";
@@ -22,7 +23,7 @@
 	}: Props = $props();
 </script>
 
-<a href={url} class="cardIntegrations">
+<a href={href(url)} class="cardIntegrations">
 	<div class="cardIntegrations__metaWrapper">
 		<div class="cardIntegrations__meta">
 			<div class="cardIntegrations__title">

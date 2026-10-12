@@ -22,12 +22,14 @@ export default [
 			// TypeScript already reports unused bindings with full type information,
 			// so the base rule would double-report every typed file.
 			"no-unused-vars": "off",
-			// Requires SvelteKit 3's resolve() for internal links. Most of our
-			// flagged sites pass a dynamic `url` prop that may well be an external
-			// link, which resolve() is not designed for. Adopting this properly
-			// means distinguishing the two at each call site and testing the
-			// result under a non-root base path - that belongs with the Kit 3
-			// upgrade, not as a drive-by rewrite.
+			// SvelteKit 3 rule that wants every internal link written as
+			// href={resolve(...)}. It only accepts a literal resolve() call, so it
+			// cannot be satisfied where a `url` prop may hold either an internal
+			// route or an external URL - calling resolve() on "https://github.com/x"
+			// returns "/https://github.com/x". Those sites go through the href()
+			// helper in src/lib/helpers/href.ts, which resolves only root-relative
+			// paths and passes everything else through untouched. Sites with a
+			// statically known route use resolve() directly.
 			"svelte/no-navigation-without-resolve": "off",
 			"@typescript-eslint/no-unused-vars": [
 				"warn",

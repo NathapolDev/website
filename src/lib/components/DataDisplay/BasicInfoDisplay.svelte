@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { href } from "../../helpers/href";
 	import { tooltip } from "../../actions/tooltip";
 	interface Props {
 		description?: string | null;
@@ -19,7 +20,7 @@
 
 {#if description !== null}
 	<a
-		href={url}
+		href={href(url)}
 		target={urlTarget}
 		class="infoDisplay"
 		class:disabled
@@ -31,7 +32,7 @@
 		{@render children?.()}
 	</a>
 {:else}
-	<a href={url} class="infoDisplay">
+	<a href={href(url)} class="infoDisplay">
 		{@render children?.()}
 	</a>
 {/if}

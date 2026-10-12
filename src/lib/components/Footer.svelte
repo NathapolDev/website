@@ -1,7 +1,7 @@
 <script>
 	import Button from "./Button.svelte";
 	import { IconArrowDownLeft, IconGitFork } from "@tabler/icons-svelte";
-	import Logo from "$lib/images/jikan.svg";
+	import Logo from "../images/jikan.svg";
 	import MalHeartBeat from "./MalHeartBeat.svelte";
 </script>
 

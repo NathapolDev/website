@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { href } from "../helpers/href";
 	import { IconArrowDownLeft } from "@tabler/icons-svelte";
 	interface Props {
 		type?: "primary" | "info" | "warning" | "patreon";
@@ -10,7 +11,7 @@
 	let { type = "primary", showIcon = true, url = "#", children }: Props = $props();
 </script>
 
-<a href={url} target="_blank" class="bannerInline bannerInline--type-{type}">
+<a href={href(url)} target="_blank" class="bannerInline bannerInline--type-{type}">
 	{@render children?.()}
 	{#if showIcon}
 		<IconArrowDownLeft class="external-link" size={20} stroke={1.5} />
