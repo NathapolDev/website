@@ -69,7 +69,7 @@
 			text-transform: capitalize;
 
 			&--healthy {
-				color: rgba(0, 255, 41, 1);
+				color: var(--status-health);
 			}
 		}
 	}

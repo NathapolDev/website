@@ -76,6 +76,9 @@
 		&--type {
 			&-primary {
 				background: var(--background-button-primary-default);
+				// Always a light label: this sits on the brand blue, so following
+				// --typography-100 made it near-illegible in the light theme.
+				color: #f4f7ff;
 
 				&:hover {
 					background: var(--background-button-primary-hover);

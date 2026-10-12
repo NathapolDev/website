@@ -106,7 +106,7 @@
 
 				&-finished {
 					border: 1px solid var(--background-500);
-					color: var(--primary-200);
+					color: var(--status-finished);
 				}
 
 				&-upcoming {

@@ -61,11 +61,19 @@
 
 	// Status colours. Each pair is checked against its own surface, because these
 	// sit on coloured chips and image scrims rather than on the page background.
-	--status-airing: #f7c0a1;
-	--status-upcoming: #21c78d;
+	--dark-status-airing: #f7c0a1;
+	--dark-status-finished: var(--primary-200);
+	--dark-status-upcoming: #21c78d;
+	--dark-status-health: #00ff29;
 	--status-request-fg: #7fe368;
 	--status-request-bg: #1d2a18;
 	--status-duration-fg: #7fe368;
+
+	// The syntax-highlighted snippet in the "How it works" diagram. Its pastel
+	// token colours are chosen for a dark surface, so this surface stays dark in
+	// both themes rather than following the page - it reads as an editor panel.
+	--surface-code: #0f1115;
+	--surface-code-fg: #b2caff;
 
 	// Scrims drawn over imagery. Always dark regardless of theme, because they
 	// exist to keep text legible on top of a cover image.
@@ -90,6 +98,12 @@
 	--light-border-default-gradient-color-start: var(--primary-200);
 	--light-border-default-gradient-color-stop: var(--primary-500);
 	--light-cursor-color: #262d3a;
+	// Status colours need their own light variants: the dark values were picked
+	// to sit on near-black chips and are far too light on a white page.
+	--light-status-airing: #9a4318;
+	--light-status-finished: #1f4c9c;
+	--light-status-upcoming: #106b47;
+	--light-status-health: #156a2c;
 }
 
 // Dark is the default theme. Declaring it unconditionally (rather than only
@@ -124,6 +138,10 @@
 	--border-default-gradient-color-start: var(--dark-border-default-gradient-color-start);
 	--border-default-gradient-color-stop: var(--dark-border-default-gradient-color-stop);
 	--cursor-color: var(--dark-cursor-color);
+	--status-airing: var(--dark-status-airing);
+	--status-finished: var(--dark-status-finished);
+	--status-upcoming: var(--dark-status-upcoming);
+	--status-health: var(--dark-status-health);
 }
 
 // Light theme. Only surfaces and text invert; the brand blues (--primary-*) are
@@ -149,6 +167,10 @@
 		--border-default-gradient-color-start: var(--light-border-default-gradient-color-start);
 		--border-default-gradient-color-stop: var(--light-border-default-gradient-color-stop);
 		--cursor-color: var(--light-cursor-color);
+		--status-airing: var(--light-status-airing);
+		--status-finished: var(--light-status-finished);
+		--status-upcoming: var(--light-status-upcoming);
+		--status-health: var(--light-status-health);
 	}
 }
 

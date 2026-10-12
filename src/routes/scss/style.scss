@@ -294,7 +294,7 @@
 		width: fit-content;
 		border: 1px solid var(--background-300);
 		border-radius: var(--border-radius-small);
-		background: var(--background-000);
+		background: var(--surface-code);
 		margin-top: -6px;
 		z-index: 0;
 	}
@@ -302,6 +302,13 @@
 	&__request {
 		font-size: 12px;
 		margin-top: 6px;
+		// This row sits on the code surface, so it cannot follow the page text
+		// colour - in the light theme that put dark text on a near-black panel.
+		color: var(--surface-code-fg);
+
+		code {
+			color: inherit;
+		}
 	}
 
 	&__codeLine {
@@ -317,7 +324,7 @@
 		}
 
 		&--default {
-			color: rgba(178, 202, 255, 1);
+			color: var(--surface-code-fg);
 		}
 
 		&--yellow {
@@ -396,7 +403,9 @@
 
 	&--more {
 		font-size: 12px;
-		color: var(--typography-400);
+		// typography-400 measured 3.5:1 against the light placeholder
+		// background, so this uses the stronger step instead.
+		color: var(--typography-200);
 		display: flex;
 		justify-content: center;
 		align-items: center;
