@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { tooltip } from "@svelte-plugins/tooltips";
+	import { tooltip } from "../actions/tooltip";
 	import { IconHelp } from "@tabler/icons-svelte";
 	import { onMount } from "svelte";
 

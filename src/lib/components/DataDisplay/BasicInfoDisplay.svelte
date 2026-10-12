@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { tooltip } from "@svelte-plugins/tooltips";
+	import { tooltip } from "../../actions/tooltip";
 	interface Props {
 		description?: string | null;
 		url?: string | null;

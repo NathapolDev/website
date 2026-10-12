@@ -1,0 +1,35 @@
+// Styling for the tooltip action in src/lib/actions/tooltip.ts.
+.jikanTooltip {
+	position: fixed;
+	z-index: 100000;
+	max-width: 280px;
+	padding: 8px 12px;
+	border: 1px solid var(--background-300);
+	border-radius: var(--border-radius-small);
+	background: var(--background-100);
+	color: var(--typography-100);
+	font-family: Inter, sans-serif;
+	font-size: 12px;
+	line-height: 1.45;
+	box-shadow: 0 8px 24px rgb(0 0 0 / 25%);
+	pointer-events: none;
+
+	// Entry animation. Disabled for anyone who asked for reduced motion.
+	animation: jikanTooltipIn 140ms ease-out;
+}
+
+@keyframes jikanTooltipIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.jikanTooltip {
+		animation: none;
+	}
+}

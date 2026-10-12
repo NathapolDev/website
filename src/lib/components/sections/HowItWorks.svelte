@@ -12,7 +12,7 @@
 		IconInfoCircle,
 		IconStar
 	} from "@tabler/icons-svelte";
-	import { tooltip } from "@svelte-plugins/tooltips";
+	import { tooltip } from "../../actions/tooltip";
 	import Contributors from "./Contributors.svelte";
 	import type { GithubData } from "../../types/github";
 
