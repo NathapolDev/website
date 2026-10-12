@@ -1,7 +1,7 @@
 <script>
 	import Button from "./Button.svelte";
 	import { IconArrowDownLeft, IconGitFork } from "@tabler/icons-svelte";
-	import Logo from "../images/jikan.svg";
+	import Logo from "../images/Logo.svelte";
 	import MalHeartBeat from "./MalHeartBeat.svelte";
 </script>
 
@@ -9,9 +9,7 @@
 	<div class="footer__body">
 		<div class="footer__content">
 			<div class="footer__brand">
-				<a href="https://jikan.moe" class="logo"
-					><img src={Logo} alt="Jikan API Logo" loading="lazy" decoding="async" /></a
-				>
+				<a href="https://jikan.moe" class="logo"><Logo /></a>
 				<p>Unofficial MyAnimeList API</p>
 
 				<MalHeartBeat />
@@ -91,7 +89,7 @@
 
 <style lang="scss">
 	// The logo SVG uses fill="currentColor", so it picks up the active theme.
-	:global(.logo img) {
+	.logo {
 		color: var(--typography-100);
 	}
 

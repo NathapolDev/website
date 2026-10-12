@@ -9,7 +9,7 @@
 		IconX
 	} from "@tabler/icons-svelte";
 	import Chip from "./Chip.svelte";
-	import Logo from "../images/jikan.svg";
+	import Logo from "../images/Logo.svelte";
 	import ThemeToggle from "./ThemeToggle.svelte";
 
 	let scrollY: number = $state(0);
@@ -25,7 +25,7 @@
 <div id="nav" class="navWrapper {isMinimized}" class:active={mobileNavToggled}>
 	<nav class="nav">
 		<div class="nav__top">
-			<a href="/" class="logo"><img src={Logo} alt="Jikan API Logo" /></a>
+			<a href="/" class="logo"><Logo /></a>
 			<div id="mobile-nav">
 				<Button type="nav-trigger" size="small" callback={toggleMobileNav}>
 					{#if mobileNavToggled}
@@ -81,7 +81,7 @@
 
 <style lang="scss">
 	// The logo SVG uses fill="currentColor", so it picks up the active theme.
-	:global(.logo img) {
+	.logo {
 		color: var(--typography-100);
 	}
 
