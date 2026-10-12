@@ -1,7 +1,7 @@
-<script>
-	export let type = "primary";
+<script lang="ts">
+	export let type: "primary" | "info" | "warning" | "patreon" = "primary";
 	export let showIcon = true;
-	export let url = "#";
+	export let url: string = "#";
 
 	import { IconArrowDownLeft } from "@tabler/icons-svelte";
 </script>
@@ -9,7 +9,7 @@
 <a href={url} target="_blank" class="bannerInline bannerInline--type-{type}">
 	<slot />
 	{#if showIcon}
-		<IconArrowDownLeft class="external-link" bind:showIcon size={20} stroke={1.5} />
+		<IconArrowDownLeft class="external-link" size={20} stroke={1.5} />
 	{/if}
 </a>
 

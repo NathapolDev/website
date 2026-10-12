@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Button from "../Button.svelte";
 	import ButtonGroup from "../ButtonGroup.svelte";
 	import Chip from "../Chip.svelte";
@@ -15,7 +15,14 @@
 	import { tooltip } from "@svelte-plugins/tooltips";
 
 	/** Repository stats and contributor avatars, fetched by the page. */
-	export let github = {};
+	type GithubRepo = { stargazers_count: number; forks_count: number };
+	type GithubContributor = { login: string; avatar_url: string; html_url: string };
+	type GithubData = {
+		jikan?: GithubRepo;
+		jikan_rest?: GithubRepo;
+		contributors?: GithubContributor[];
+	};
+	export let github: GithubData = {};
 </script>
 
 <section class="howItWorksWrapper" id="how-it-works">

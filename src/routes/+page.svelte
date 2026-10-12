@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Nav from "../lib/components/Nav.svelte";
 	import Footer from "../lib/components/Footer.svelte";
 	import Hero from "../lib/components/sections/Hero.svelte";
@@ -7,7 +7,14 @@
 	import Integrations from "../lib/components/sections/Integrations.svelte";
 	import { onMount } from "svelte";
 
-	let github = {};
+	type GithubRepo = { stargazers_count: number; forks_count: number };
+	type GithubContributor = { login: string; avatar_url: string; html_url: string };
+	type GithubData = {
+		jikan?: GithubRepo;
+		jikan_rest?: GithubRepo;
+		contributors?: GithubContributor[];
+	};
+	let github: GithubData = {};
 	onMount(async () => {
 		github.jikan = await (await fetch("https://api.github.com/repos/jikan-me/jikan")).json();
 		github.jikan_rest = await (

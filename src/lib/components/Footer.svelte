@@ -30,12 +30,12 @@
 					<strong>Developers</strong>
 					<ul>
 						<li>
-							<Button url="https://docs.api.jikan.moe/" urlTarget="blank" type="link"
+							<Button url="https://docs.api.jikan.moe/" urlTarget="_blank" type="link"
 								><IconArrowDownLeft class="external-link" size={20} stroke={1.5} /> Documentation</Button
 							>
 						</li>
 						<li>
-							<Button urlTarget="blank" type="link"
+							<Button urlTarget="_blank" type="link"
 								><IconArrowDownLeft class="external-link" size={20} stroke={1.5} /> Status</Button
 							>
 						</li>
@@ -185,9 +185,6 @@
 
 			&__linksWrapper {
 				flex-direction: column;
-			}
-
-			&__links {
 			}
 		}
 

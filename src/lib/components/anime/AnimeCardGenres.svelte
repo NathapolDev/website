@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 	import Chip from "../Chip.svelte";
 
-	export let genres = [];
+	export let genres: { name: string }[] = [];
 </script>
 
 <div class="cardAnime__genres">

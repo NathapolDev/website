@@ -1,9 +1,9 @@
-<script>
-	import string from "../../helpers/string.js";
+<script lang="ts">
+	import string from "../../helpers/string";
 
-	export let imageUrl = "";
-	export let title = "";
-	export let rating = "";
+	export let imageUrl: string = "";
+	export let title: string = "";
+	export let rating: string | null = "";
 </script>
 
 <div class="cardAnime__cover">

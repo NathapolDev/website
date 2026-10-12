@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { tooltip } from "@svelte-plugins/tooltips";
 	import { IconHelp } from "@tabler/icons-svelte";
 	import { onMount } from "svelte";
@@ -21,7 +21,7 @@
 				content:
 					"MAL Heartbeat monitors connections between the Jikan REST API and MyAnimeList.net. Requests to MyAnimeList.net that fail contribute towards a negative health event.",
 				animation: "slide"
-			}}><IconHelp size={20} stroke={1.5} style="margin-top: 6px;" /></span
+			}}><IconHelp size={20} stroke={1.5} class="heartbeat__helpIcon" /></span
 		>
 		<strong>MAL HeartBeat</strong>
 	</p>
@@ -36,6 +36,10 @@
 </div>
 
 <style lang="scss">
+	:global(.heartbeat__helpIcon) {
+		margin-top: 6px;
+	}
+
 	.heartbeat {
 		box-sizing: border-box;
 		display: flex;

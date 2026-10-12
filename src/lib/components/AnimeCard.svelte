@@ -1,26 +1,26 @@
-<script>
+<script lang="ts">
 	import AnimeCardCover from "./anime/AnimeCardCover.svelte";
 	import AnimeCardGenres from "./anime/AnimeCardGenres.svelte";
 	import AnimeCardMeta from "./anime/AnimeCardMeta.svelte";
 	import AnimeCardRating from "./anime/AnimeCardRating.svelte";
-	import tilt from "./tilt.js";
+	import tilt from "./tilt";
 
-	export let mal_id = 0;
-	export let imageUrl = "";
-	export let rating = "";
-	export let score = 0;
-	export let scoredBy = 0;
-	export let title = "";
-	export let season = 0;
-	export let year = 0;
-	export let genres = [];
-	export let status = "";
-	export let episodes = 0;
-	export let rank = 0;
-	export let skeleton = false;
-	export let cardExit = false;
+	export let mal_id: number = 0;
+	export let imageUrl: string = "";
+	export let rating: string | null = "";
+	export let score: number | null = 0;
+	export let scoredBy: number | null = 0;
+	export let title: string = "";
+	export let season: string | number | null = 0;
+	export let year: number | null = 0;
+	export let genres: { name: string }[] = [];
+	export let status: string = "";
+	export let episodes: number | null = 0;
+	export let rank: number | null = 0;
+	export let skeleton: boolean = false;
+	export let cardExit: boolean = false;
 
-	const STATUS_CLASSES = {
+	const STATUS_CLASSES: Record<string, string> = {
 		"Finished Airing": "animeStatus-finished",
 		"Not yet aired": "animeStatus-upcoming",
 		"Currently Airing": "animeStatus-airing"

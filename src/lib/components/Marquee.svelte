@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
 	import JetbrainsLogo from "../images/jetbrains.svg";
 	import Divider from "./Divider.svelte";
 	import { onMount } from "svelte";
 	import supporters from "../../data/supporters.js";
 
-	let track;
+	let track: HTMLDivElement;
 
 	onMount(() => {
 		// Duplicate the track once. The CSS animation translates the track by

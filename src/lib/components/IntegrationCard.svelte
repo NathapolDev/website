@@ -1,12 +1,12 @@
-<script>
+<script lang="ts">
 	import Chip from "./Chip.svelte";
 
 	export let supportsV3 = false;
 	export let supportsV4 = false;
-	export let author = null;
-	export let title = null;
-	export let language = null;
-	export let url = null;
+	export let author: string | null = null;
+	export let title: string | null = null;
+	export let language: string | null = null;
+	export let url: string | null = null;
 	import { IconArrowDownLeft } from "@tabler/icons-svelte";
 	import Divider from "./Divider.svelte";
 </script>

@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
 	import Button from "./Button.svelte";
 	import { IconCopy, IconCheck } from "@tabler/icons-svelte";
 
 	export let isCopyable = true;
-	export let id = null;
+	export let id: string | null = null;
 	export let value = "";
 
 	$: showCopied = false;
@@ -40,7 +40,7 @@
 	{#if isCopyable}
 		<Button type="tertiary" size="small" on:message={copyToClipboard}>
 			{#if showCopied}
-				<IconCheck size={20} stroke={1.5} style="color: forestgreen;" />
+				<IconCheck size={20} stroke={1.5} class="inputReadOnly__copiedIcon" />
 			{:else}
 				<IconCopy size={20} stroke={1.5} />
 			{/if}
@@ -49,6 +49,10 @@
 </label>
 
 <style lang="scss">
+	:global(.inputReadOnly__copiedIcon) {
+		color: forestgreen;
+	}
+
 	input {
 		font-size: 12px;
 	}

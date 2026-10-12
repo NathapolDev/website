@@ -58,7 +58,7 @@
 							Generate wrappers on the fly as our documentation is built on <Button
 								type="link"
 								url="https://raw.githubusercontent.com/jikan-me/jikan-rest/master/storage/api-docs/api-docs.json"
-								urlTarget="blank">OpenAPI 3.1</Button
+								urlTarget="_blank">OpenAPI 3.1</Button
 							> Specs.
 						</p>
 					</div>

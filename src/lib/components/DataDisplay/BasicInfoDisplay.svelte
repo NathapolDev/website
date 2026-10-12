@@ -1,8 +1,8 @@
-<script>
+<script lang="ts">
 	import { tooltip } from "@svelte-plugins/tooltips";
-	export let description = null;
-	export let url = null;
-	export let urlTarget = "_self";
+	export let description: string | null = null;
+	export let url: string | null = null;
+	export let urlTarget: "_self" | "_blank" | "_parent" | "_top" = "_self";
 	export let disabled = false;
 </script>
 

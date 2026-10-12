@@ -1,11 +1,11 @@
-<script>
+<script lang="ts">
 	import Typewriter from "svelte-typewriter";
 	import Chip from "./Chip.svelte";
 	import AnimeCard from "./AnimeCard.svelte";
 	import { onMount } from "svelte";
-	import math from "../helpers/math.js";
-	import funcs from "../helpers/funcs.js";
-	import ui from "../helpers/ui.js";
+	import math from "../helpers/math";
+	import funcs from "../helpers/funcs";
+	import ui from "../helpers/ui";
 	import { fly } from "svelte/transition";
 
 	let requests = [
@@ -21,14 +21,30 @@
 	];
 	$: requestUrl = requests[0];
 	$: requestIndex = 0;
-	$: requestInterval = null;
+	let requestInterval: ReturnType<typeof setInterval> | null = null;
 	$: intervalLock = false;
 	$: showCards = false;
 	$: isCardTransitioning = false;
 	$: requestDuration = 0;
 	$: showDuration = false;
 
-	let entries = [];
+	/** One row of the /v4/top/anime response, as consumed by AnimeCard. */
+	type AnimeEntry = {
+		mal_id: number;
+		status: string;
+		title: string;
+		images: { jpg: { large_image_url: string } };
+		rating: string | null;
+		score: number | null;
+		scored_by: number | null;
+		season: string | null;
+		year: number | null;
+		episodes: number | null;
+		rank: number | null;
+		genres: { name: string }[];
+	};
+
+	let entries: AnimeEntry[] = [];
 
 	onMount(() => {
 		for (let i = 0; i <= math.randomInteger(2, 4); i++) {
@@ -56,11 +72,10 @@
 		isCardTransitioning = false;
 
 		let startTime = performance.now();
-		entries = await (await fetch(requestUrl)).json();
+		const response = (await (await fetch(requestUrl)).json()) as { data: AnimeEntry[] };
 		requestDuration = Math.ceil(performance.now() - startTime);
 		showDuration = true;
-		// console.log('got '+entries.data.length+' entries');
-		entries = entries.data.slice(0, 6);
+		entries = response.data.slice(0, 6);
 
 		isCardTransitioning = true;
 		await ui.sleep(100);
@@ -82,7 +97,7 @@
 			showDuration = false;
 			updateRequestUrl();
 			intervalLock = false;
-			clearInterval(requestInterval);
+			if (requestInterval !== null) clearInterval(requestInterval);
 		}, 10000);
 	}
 

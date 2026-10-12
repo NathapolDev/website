@@ -27,6 +27,7 @@
 		span {
 			display: -webkit-box;
 			-webkit-box-orient: vertical;
+			line-clamp: 1;
 			-webkit-line-clamp: 1;
 			align-self: stretch;
 			text-overflow: ellipsis;

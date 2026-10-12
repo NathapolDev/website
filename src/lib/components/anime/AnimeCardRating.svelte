@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
 	import { IconStar, IconHash } from "@tabler/icons-svelte";
 
-	export let score = 0;
-	export let scoredBy = 0;
-	export let rank = 0;
+	export let score: number | null = 0;
+	export let scoredBy: number | null = 0;
+	export let rank: number | null = 0;
 </script>
 
 <div class="cardAnime__rating">

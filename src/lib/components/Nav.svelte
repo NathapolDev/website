@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Button from "./Button.svelte";
 	import {
 		IconArrowDownLeft,
@@ -11,12 +11,12 @@
 	import Chip from "./Chip.svelte";
 	import Logo from "$lib/images/jikan.svg";
 
-	let scrollY;
+	let scrollY: number = 0;
 	let mobileNavToggled = false;
 	$: isMinimized = scrollY > 50 ? "navWrapper--minimize" : "";
 	function toggleMobileNav() {
 		mobileNavToggled = !mobileNavToggled;
-		document.getElementById("nav").classList.toggle("active");
+		document.getElementById("nav")?.classList.toggle("active");
 	}
 </script>
 

@@ -1,8 +1,8 @@
-<script>
-	export let title = null;
-	export let summary = null;
-	export let imageUrl = null;
-	export let url = null;
+<script lang="ts">
+	export let title: string | null = null;
+	export let summary: string | null = null;
+	export let imageUrl: string | null = null;
+	export let url: string | null = null;
 </script>
 
 <a href={url} target="_blank" class="cardShowcase">

@@ -1,5 +1,31 @@
-//https://svelte.dev/repl/7b23ad9d2693424482cd411b0378b55b?version=3.24.1
-function getSettings(settings = {}) {
+// Adapted from https://svelte.dev/repl/7b23ad9d2693424482cd411b0378b55b?version=3.24.1
+
+interface TiltSettings {
+	/** Uniform scale applied to the element. */
+	scale?: number;
+	/** Maximum tilt angle, in degrees, on each axis. */
+	max?: number;
+	/** Invert the tilt direction. */
+	reverse?: boolean;
+}
+
+interface ResolvedTiltSettings {
+	scale: number;
+	max: number;
+	reverse: boolean;
+}
+
+/** Minimal surface of the Svelte action contract that this action relies on. */
+interface TiltNode extends HTMLElement {
+	style: CSSStyleDeclaration;
+}
+
+type TiltAction = {
+	destroy: () => void;
+	update: (settings?: TiltSettings) => void;
+};
+
+function getSettings(settings: TiltSettings = {}): ResolvedTiltSettings {
 	return { scale: 1, max: 5, reverse: false, ...settings };
 }
 
@@ -11,12 +37,12 @@ const prefersReducedMotion =
 	window.matchMedia &&
 	window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-export default function tilt(node, settingsObj) {
+export default function tilt(node: TiltNode, settingsObj?: TiltSettings): TiltAction {
 	const { width, height, left, top } = node.getBoundingClientRect();
 	let settings = getSettings(settingsObj);
 	let reverse = settings.reverse ? -1 : 1;
 
-	function onMouseMove(e) {
+	function onMouseMove(e: MouseEvent) {
 		if (prefersReducedMotion) return;
 
 		const percX = (e.clientX - left) / width;
@@ -34,7 +60,7 @@ export default function tilt(node, settingsObj) {
 			`scale3d(${Array(3).fill(scale).join(", ")})`;
 	}
 
-	let transitionId;
+	let transitionId: ReturnType<typeof setTimeout>;
 	function smoothTransition() {
 		clearTimeout(transitionId);
 		node.style.willChange = "transform";
@@ -63,8 +89,8 @@ export default function tilt(node, settingsObj) {
 			node.removeEventListener("mouseleave", onMouseLeave);
 			node.removeEventListener("mouseenter", onMouseEnter);
 		},
-		update(settingsObj) {
-			settings = getSettings(settingsObj);
+		update(nextSettings?: TiltSettings) {
+			settings = getSettings(nextSettings);
 			reverse = settings.reverse ? -1 : 1;
 		}
 	};

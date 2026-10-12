@@ -1,12 +1,12 @@
-<script>
+<script lang="ts">
 	import { createEventDispatcher } from "svelte";
 	const dispatch = createEventDispatcher();
 	export let type = "primary";
 	export let size = "default";
-	export let url = null;
-	export let urlTarget = "_self";
+	export let url: string | null = null;
+	export let urlTarget: "_self" | "_blank" | "_parent" | "_top" = "_self";
 
-	export let callback = null;
+	export let callback: (() => void) | null = null;
 
 	function onClick() {
 		dispatch("message", { text: "clicked" });
