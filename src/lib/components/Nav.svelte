@@ -10,6 +10,7 @@
 	} from "@tabler/icons-svelte";
 	import Chip from "./Chip.svelte";
 	import Logo from "$lib/images/jikan.svg";
+	import ThemeToggle from "./ThemeToggle.svelte";
 
 	let scrollY: number = $state(0);
 	let mobileNavToggled = $state(false);
@@ -72,6 +73,7 @@
 						url="https://github.com/jikan-me"
 						><IconBrandGithub size={20} stroke={1.5} /></Button
 					>
+					<ThemeToggle />
 				</div>
 			</div>
 		</div>

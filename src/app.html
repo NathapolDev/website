@@ -55,6 +55,18 @@
 		%sveltekit.head%
 
 		<!--		<link rel="stylesheet" href="%sveltekit.assets%/scss/bootstrap.scss">-->
+		<!-- Apply the saved theme before first paint so there is no flash of the
+		     wrong colours. Kept inline and tiny on purpose. -->
+		<script>
+			try {
+				var stored = localStorage.getItem("jikan-theme");
+				if (stored === "light" || stored === "dark") {
+					document.documentElement.setAttribute("data-theme", stored);
+				}
+			} catch (e) {
+				/* Storage unavailable - fall back to prefers-color-scheme. */
+			}
+		</script>
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>

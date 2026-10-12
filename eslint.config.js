@@ -38,6 +38,22 @@ export default [
 		}
 	},
 	{
+		// Runes are compiler macros, so they have no runtime binding ESLint can
+		// resolve. Declare them for rune modules (.svelte.ts / .svelte.js).
+		files: ["**/*.svelte.ts", "**/*.svelte.js"],
+		languageOptions: {
+			globals: {
+				$state: "readonly",
+				$derived: "readonly",
+				$effect: "readonly",
+				$props: "readonly",
+				$bindable: "readonly",
+				$inspect: "readonly",
+				$host: "readonly"
+			}
+		}
+	},
+	{
 		ignores: ["build/", ".svelte-kit/", "node_modules/", "static/"]
 	}
 ];

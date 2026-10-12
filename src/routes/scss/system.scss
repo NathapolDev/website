@@ -354,3 +354,43 @@ a:visited {
 		scroll-behavior: auto !important;
 	}
 }
+
+// Explicit theme override. `data-theme` is set on <html> by the theme toggle and
+// by the inline script in app.html. These blocks sit *after* the
+// prefers-color-scheme rules so they win at equal specificity, which lets the
+// toggle override the OS preference while "system" falls back to it.
+:root[data-theme="dark"] {
+	--background-500: var(--dark-background-500);
+	--background-400: var(--dark-background-400);
+	--background-300: var(--dark-background-300);
+	--background-200: var(--dark-background-200);
+	--background-100: var(--dark-background-100);
+	--background-000: var(--dark-background-000);
+	--typography-100: var(--dark-typography-100);
+	--typography-200: var(--dark-typography-200);
+	--typography-300: var(--dark-typography-300);
+	--typography-400: var(--dark-typography-400);
+	--border-patreon-gradient-color-start: var(--dark-border-patreon-gradient-color-start);
+	--border-patreon-gradient-color-stop: var(--dark-border-patreon-gradient-color-stop);
+	--border-default-gradient-color-start: var(--dark-border-default-gradient-color-start);
+	--border-default-gradient-color-stop: var(--dark-border-default-gradient-color-stop);
+	--cursor-color: var(--dark-cursor-color);
+}
+
+:root[data-theme="light"] {
+	--background-500: var(--light-background-500);
+	--background-400: var(--light-background-400);
+	--background-300: var(--light-background-300);
+	--background-200: var(--light-background-200);
+	--background-100: var(--light-background-100);
+	--background-000: var(--light-background-000);
+	--typography-100: var(--light-typography-100);
+	--typography-200: var(--light-typography-200);
+	--typography-300: var(--light-typography-300);
+	--typography-400: var(--light-typography-400);
+	--border-patreon-gradient-color-start: var(--light-border-patreon-gradient-color-start);
+	--border-patreon-gradient-color-stop: var(--light-border-patreon-gradient-color-stop);
+	--border-default-gradient-color-start: var(--light-border-default-gradient-color-start);
+	--border-default-gradient-color-stop: var(--light-border-default-gradient-color-stop);
+	--cursor-color: var(--light-cursor-color);
+}
