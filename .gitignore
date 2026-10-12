@@ -4,3 +4,8 @@
 /.svelte-kit
 *.Identifier
 *.mjs
+
+# ...but tooling scripts under scripts/ are source and must be committed.
+!scripts/*.mjs
+# Fetched at build time by scripts/fetch-github.mjs
+/src/data/generated

@@ -11,7 +11,10 @@
 		"format:check": "prettier --check .",
 		"check": "npm run lint && npm run format:check && npm run check:types && npm run validate:data",
 		"check:types": "svelte-check --threshold warning",
-		"validate:data": "vite-node scripts/validate-data.mts"
+		"validate:data": "vite-node scripts/validate-data.mts",
+		"fetch:github": "node scripts/fetch-github.mjs",
+		"prebuild": "node scripts/fetch-github.mjs",
+		"predev": "node scripts/fetch-github.mjs"
 	},
 	"devDependencies": {
 		"@eslint/js": "^8.57.1",

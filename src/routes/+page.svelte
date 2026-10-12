@@ -5,25 +5,14 @@
 	import Features from "../lib/components/sections/Features.svelte";
 	import HowItWorks from "../lib/components/sections/HowItWorks.svelte";
 	import Integrations from "../lib/components/sections/Integrations.svelte";
-	import { onMount } from "svelte";
+	import type { GithubData } from "../lib/types/github";
 
-	type GithubRepo = { stargazers_count: number; forks_count: number };
-	type GithubContributor = { login: string; avatar_url: string; html_url: string };
-	type GithubData = {
-		jikan?: GithubRepo;
-		jikan_rest?: GithubRepo;
-		contributors?: GithubContributor[];
-	};
-	let github: GithubData = {};
-	onMount(async () => {
-		github.jikan = await (await fetch("https://api.github.com/repos/jikan-me/jikan")).json();
-		github.jikan_rest = await (
-			await fetch("https://api.github.com/repos/jikan-me/jikan-rest")
-		).json();
-		github.contributors = await (
-			await fetch("https://api.github.com/repos/jikan-me/jikan/contributors")
-		).json();
-	});
+	// Repository stats and contributors are fetched at build time by
+	// scripts/fetch-github.mjs, so the page no longer makes three unauthenticated
+	// GitHub API calls per visitor (see the script for why that used to break).
+	import githubData from "../data/generated/github.json";
+
+	const github = githubData as GithubData;
 </script>
 
 <svelte:head>
@@ -60,7 +49,7 @@
 	<meta name="og:type" content="website" />
 
 	<meta name="msapplication-TileColor" content="#da532c" />
-	<meta name="theme-color" content="#ffffff" />
+	<meta name="theme-color" content="#0f1115" />
 </svelte:head>
 
 <Nav />

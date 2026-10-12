@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Keep in sync with the routes under src/routes/. Only indexable, prerendered
+	pages belong here; the 404 page is excluded deliberately (it sends noindex).
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>https://jikan.moe/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://jikan.moe/showcase</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+</urlset>

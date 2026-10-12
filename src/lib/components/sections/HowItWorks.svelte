@@ -13,16 +13,17 @@
 		IconStar
 	} from "@tabler/icons-svelte";
 	import { tooltip } from "@svelte-plugins/tooltips";
+	import type { GithubData } from "../../types/github";
 
-	/** Repository stats and contributor avatars, fetched by the page. */
-	type GithubRepo = { stargazers_count: number; forks_count: number };
-	type GithubContributor = { login: string; avatar_url: string; html_url: string };
-	type GithubData = {
-		jikan?: GithubRepo;
-		jikan_rest?: GithubRepo;
-		contributors?: GithubContributor[];
-	};
-	export let github: GithubData = {};
+	/**
+	 * Repository stats and contributor avatars, fetched at build time by
+	 * scripts/fetch-github.mjs. Always fully populated: the script emits an
+	 * empty-but-valid payload rather than failing when GitHub is unreachable.
+	 */
+	/** How many contributor avatars are rendered before the "+N" overflow chip. */
+	const CONTRIBUTORS_SHOWN = 6;
+
+	export let github: GithubData;
 </script>
 
 <section class="howItWorksWrapper" id="how-it-works">
@@ -350,7 +351,10 @@
 								>
 							{/each}
 							<span class="avatar avatar--stacked avatar--more"
-								>+{github.contributors.length - 7}</span
+								>+{Math.max(
+									github.contributors.length - CONTRIBUTORS_SHOWN,
+									0
+								)}</span
 							>
 						</div>
 					{/if}

@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Page not found — Jikan</title>
+		<meta name="robots" content="noindex" />
+		<meta name="description" content="That page does not exist on Jikan." />
+		<link rel="icon" href="/favicon/favicon-32x32.png?v=2" />
+		<link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png?v=2" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Inter:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			/* Mirrors the tokens in src/routes/scss/system.scss. This page is
+			   served standalone by Netlify, so it cannot rely on the built CSS. */
+			:root {
+				--background-000: #0f1115;
+				--background-100: #121419;
+				--background-200: #161922;
+				--background-300: #1f2635;
+				--typography-100: #dbe6ff;
+				--typography-300: #99a8c9;
+				--typography-400: #8998b8;
+				--primary-400: #4976d0;
+				--primary-500: #1847b1;
+				--border-radius-large: 12px;
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			html,
+			body {
+				height: 100%;
+			}
+
+			body {
+				margin: 0;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 32px;
+				background: var(--background-000);
+				color: var(--typography-100);
+				font-family: Inter, system-ui, sans-serif;
+				text-align: center;
+			}
+
+			main {
+				max-width: 560px;
+			}
+
+			code {
+				font-family: "IBM Plex Mono", ui-monospace, monospace;
+			}
+
+			p.status {
+				display: inline-block;
+				margin: 0 0 24px;
+				padding: 8px 16px;
+				border: 1px solid var(--background-300);
+				border-radius: var(--border-radius-large);
+				background: var(--background-100);
+				color: var(--typography-300);
+				font-family: "IBM Plex Mono", ui-monospace, monospace;
+				font-size: 14px;
+			}
+
+			h1 {
+				margin: 0 0 12px;
+				font-family: "IBM Plex Mono", ui-monospace, monospace;
+				font-size: clamp(28px, 6vw, 44px);
+				line-height: 1.1;
+			}
+
+			p.detail {
+				margin: 0 0 32px;
+				color: var(--typography-400);
+				line-height: 1.6;
+			}
+
+			nav {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 12px;
+				justify-content: center;
+			}
+
+			a {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 12px 20px;
+				border: 1px solid var(--background-300);
+				border-radius: var(--border-radius-large);
+				background: var(--background-100);
+				color: var(--typography-100);
+				text-decoration: none;
+				transition:
+					border-color 0.2s ease,
+					background 0.2s ease;
+			}
+
+			a.primary {
+				background: var(--primary-500);
+				border-color: var(--primary-500);
+			}
+
+			a:hover {
+				border-color: var(--primary-400);
+				background: var(--background-200);
+			}
+
+			a.primary:hover {
+				background: var(--primary-400);
+			}
+
+			a:focus-visible {
+				outline: 2px solid var(--primary-400);
+				outline-offset: 2px;
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				a {
+					transition: none;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<p class="status"><code>404</code></p>
+			<h1>This page does not exist</h1>
+			<p class="detail">
+				The URL may be mistyped, or the page may have moved. The documentation is a good
+				place to pick things back up.
+			</p>
+			<nav>
+				<a class="primary" href="/">Back to the homepage</a>
+				<a href="https://docs.api.jikan.moe/">Read the docs</a>
+				<a href="/showcase">Browse the showcase</a>
+			</nav>
+		</main>
+	</body>
+</html>
