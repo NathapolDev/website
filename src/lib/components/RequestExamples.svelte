@@ -5,126 +5,96 @@
 	import { onMount } from "svelte";
 	import math from "../helpers/math";
 	import funcs from "../helpers/funcs";
-	import ui from "../helpers/ui";
 	import { fly } from "svelte/transition";
+
+	/** How long a result set stays on screen before rotating to the next URL. */
+	const ROTATE_MS = 10000;
+
+	// Anime is captured at build time by scripts/fetch-anime.mjs rather than
+	// fetched from api.jikan.moe in the browser. That request used to hang
+	// whenever the API was unreachable, leaving skeletons on screen forever.
+	import anime from "../../data/generated/anime.json";
 
 	let requests = $state([
 		"https://api.jikan.moe/v4/anime?q=bleach&sfw",
-		"https://api.jikan.moe/v4/anime?q=新世紀&sfw",
+		"https://api.jikan.moe/v4/anime?q=%E6%96%B0%E4%B8%96%E7%B4%80&sfw",
 		"https://api.jikan.moe/v4/seasons/now?sfw",
 		"https://api.jikan.moe/v4/top/anime?sfw",
 		"https://api.jikan.moe/v4/seasons/upcoming",
 		"https://api.jikan.moe/v4/top/anime?type=movie",
 		"https://api.jikan.moe/v4/top/anime?type=ova",
-		"https://api.jikan.moe/v4/top/anime?type=ona",
 		"https://api.jikan.moe/v4/top/anime?type=ona"
 	]);
-	let requestUrl = $derived(requests[0]);
+
 	let requestIndex = $state(0);
+	// Derived from requestIndex rather than assigned to: $derived is a
+	// declaration, not a variable to write to. This previously derived from
+	// requests[0] and was then reassigned, so requestIndex was never used.
+	let requestUrl = $derived(requests[requestIndex]);
 
-	let requestInterval: ReturnType<typeof setInterval> | null = null;
-	let intervalLock = $state(false);
+	let rotateTimer: ReturnType<typeof setInterval> | null = null;
 
-	let showCards = $state(false);
-
-	let isCardTransitioning = $state(false);
-
-	let requestDuration = $state(0);
-
-	let showDuration = $state(false);
-
-	/** One row of the /v4/top/anime response, as consumed by AnimeCard. */
-	type AnimeEntry = {
+	/** Rows of /v4/top/anime, as consumed by AnimeCard. */
+	interface AnimeEntry {
 		mal_id: number;
 		status: string;
 		title: string;
-		images: { jpg: { large_image_url: string } };
+		imageUrl: string;
 		rating: string | null;
 		score: number | null;
-		scored_by: number | null;
+		scoredBy: number | null;
 		season: string | null;
 		year: number | null;
 		episodes: number | null;
 		rank: number | null;
 		genres: { name: string }[];
-	};
+	}
 
-	let entries: AnimeEntry[] = $state([]);
+	let entries = $state<AnimeEntry[]>(anime.entries);
+	let showCards = $derived(entries.length > 0);
+	let isCardTransitioning = $state(false);
+	// Measured when the data was captured, so the figure is honest about being
+	// build-time rather than pretending to be a live round trip.
+	let requestDuration = $derived(anime.durationMs);
+	let showDuration = $state(false);
 
 	onMount(() => {
+		// A few random historical seasons, plus today's schedule.
 		for (let i = 0; i <= math.randomInteger(2, 4); i++) {
-			let randomYear = math.randomInteger(2005, new Date().getFullYear() - 1);
-			let randomSeason = ["spring", "summer", "winter", "fall"][math.randomInteger(0, 3)];
+			const randomYear = math.randomInteger(2005, new Date().getFullYear() - 1);
+			const seasons = ["spring", "summer", "fall", "winter"];
 			requests.push(
-				"https://api.jikan.moe/v4/seasons/" + randomYear + "/" + randomSeason + "?sfw"
+				`https://api.jikan.moe/v4/seasons/${randomYear}/${seasons[math.randomInteger(0, 3)]}?sfw`
 			);
 		}
-
-		let today = new Date().toLocaleString("en-us", { weekday: "long" }).toLowerCase();
-		requests.push("https://api.jikan.moe/v4/schedules/" + today + "?sfw");
+		const today = new Date().toLocaleString("en-us", { weekday: "long" }).toLowerCase();
+		requests.push(`https://api.jikan.moe/v4/schedules/${today}?sfw`);
 
 		requests = funcs.shuffle(requests);
-	});
-	async function apiCall() {
-		if (intervalLock) {
-			return;
-		}
-
-		isCardTransitioning = true;
-		await ui.sleep(100);
-		showCards = false;
-		await ui.sleep(100);
-		isCardTransitioning = false;
-
-		let startTime = performance.now();
-		const response = (await (await fetch(requestUrl)).json()) as { data: AnimeEntry[] };
-		requestDuration = Math.ceil(performance.now() - startTime);
 		showDuration = true;
-		entries = response.data.slice(0, 6);
 
-		isCardTransitioning = true;
-		await ui.sleep(100);
-		showCards = true;
-		await ui.sleep(100);
-		isCardTransitioning = false;
+		// The rotation timer outlives several typewriter cycles, so it has to be
+		// cleared when the component goes away rather than left running.
+		rotateTimer = setInterval(() => {
+			requestIndex = (requestIndex + 1) % requests.length;
+		}, ROTATE_MS);
 
-		// pauseInterval = setInterval(() => {
-		// 	console.log('waiting...')
-		// 	intervalLock = false;
-		// 	clearInterval(pauseInterval)
-		// }, 5000);
-		//
-		// if (intervalLock) {
-		// 	return;
-		// }
-		intervalLock = true;
-		requestInterval = setInterval(() => {
-			showDuration = false;
-			updateRequestUrl();
-			intervalLock = false;
-			if (requestInterval !== null) clearInterval(requestInterval);
-		}, 10000);
-	}
-
-	function updateRequestUrl() {
-		requestIndex++;
-		requestIndex = requestIndex >= requests.length ? 0 : requestIndex;
-		requestUrl = requests[requestIndex];
-		// console.log(requestUrl)
-	}
+		return () => {
+			if (rotateTimer !== null) clearInterval(rotateTimer);
+		};
+	});
 </script>
 
 <div class="request">
 	<Chip type="request" size="small">GET</Chip>
-	<Typewriter
-		mode="loopOnce"
-		keepCursorOnFinish={true}
-		interval={20}
-		unwriteInterval={5}
-		on:done={apiCall}
-		><a href={requestUrl} target="_blank"><code>{requestUrl}</code></a></Typewriter
-	>
-	{#if showDuration && requestDuration > 0}
+	<!-- svelte-typewriter captures its text on mount, so changing requestUrl
+	     alone would leave the old URL on screen. {#key} remounts it instead. -->
+	{#key requestUrl}
+		<Typewriter mode="loopOnce" keepCursorOnFinish={true} interval={20} unwriteInterval={5}
+			><a href={requestUrl} target="_blank"><code>{requestUrl}</code></a></Typewriter
+		>
+	{/key}
+	{#if showDuration && requestDuration}
 		<span transition:fly={{ delay: 0, duration: 150, x: -32 }} class="duration"
 			>{requestDuration}ms</span
 		>
@@ -144,10 +114,10 @@
 				mal_id={entry.mal_id}
 				status={entry.status}
 				title={entry.title}
-				imageUrl={entry.images.jpg.large_image_url}
+				imageUrl={entry.imageUrl}
 				rating={entry.rating}
 				score={entry.score}
-				scoredBy={entry.scored_by}
+				scoredBy={entry.scoredBy}
 				season={entry.season}
 				year={entry.year}
 				episodes={entry.episodes}

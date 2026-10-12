@@ -13,9 +13,10 @@
 		"check:types": "svelte-check --threshold warning",
 		"validate:data": "vite-node scripts/validate-data.mts",
 		"fetch:github": "node scripts/fetch-github.mjs",
-		"prebuild": "node scripts/fetch-github.mjs",
-		"predev": "node scripts/fetch-github.mjs",
-		"precheck": "svelte-kit sync && node scripts/fetch-github.mjs"
+		"prebuild": "node scripts/fetch-github.mjs && node --experimental-strip-types scripts/fetch-anime.mjs",
+		"predev": "node scripts/fetch-github.mjs && node --experimental-strip-types scripts/fetch-anime.mjs",
+		"precheck": "svelte-kit sync && node scripts/fetch-github.mjs",
+		"fetch:anime": "node --experimental-strip-types scripts/fetch-anime.mjs"
 	},
 	"devDependencies": {
 		"@eslint/js": "^8.57.1",
