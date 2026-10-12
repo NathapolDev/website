@@ -1,0 +1,147 @@
+// Extracted from AnimeCard.svelte so the card can be composed from
+// sub-components: Svelte scoped styles do not reach into child
+// components, so these rules have to live at global scope.
+@use "sass:color";
+
+.cardAnime {
+	position: relative;
+	display: inline-flex;
+	padding: 8px;
+	align-items: flex-start;
+	gap: 16px;
+	background:
+		linear-gradient(var(--background-100), var(--background-100)) padding-box,
+		linear-gradient(
+				to left,
+				color.change(#1847b1, $alpha: 0.2),
+				color.change(#a1c4f7, $alpha: 0.2)
+			)
+			border-box;
+	border: 1px solid transparent;
+	border-radius: var(--border-radius-large);
+	user-select: none;
+	-webkit-user-drag: none;
+	transition: all 0.25s ease;
+	overflow: hidden;
+	height: 200px;
+	min-width: 300px;
+
+	&--skeleton {
+		border-radius: 12px;
+		border: 1px solid #a1c4f7;
+		background: linear-gradient(108deg, #1f2635 2.12%, rgba(31, 38, 53, 0) 100%);
+		border: 1px solid var(--background-600);
+		height: 200px;
+		width: 300px;
+		overflow: hidden;
+	}
+
+	&--exit {
+		filter: blur(10px) grayscale(1);
+		transform: scale(0.95, 0.95);
+		opacity: 0;
+	}
+
+	&__cover {
+		height: 200px;
+		width: 140px;
+		overflow: hidden;
+		position: relative;
+		border-radius: var(--border-radius-small);
+
+		img {
+			height: inherit;
+			width: inherit;
+			object-fit: cover;
+			border-radius: var(--border-radius-small);
+			-webkit-user-drag: none;
+			user-select: none;
+		}
+	}
+
+	&__meta {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	&__body {
+		display: flex;
+		max-width: 200px;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 8px;
+	}
+
+	&__title {
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		align-self: stretch;
+		overflow: hidden;
+		color: var(--typography-100);
+		text-overflow: ellipsis;
+		margin: 10px 0;
+		max-width: 180px;
+		line-height: 1.25;
+	}
+
+	&__rating {
+		display: flex;
+		align-items: flex-start;
+		gap: 16px;
+		align-self: stretch;
+	}
+
+	&__score,
+	&__rank {
+		small {
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 1;
+			overflow: hidden;
+			color: var(--typography-300);
+			text-overflow: ellipsis;
+		}
+
+		> div {
+			display: flex;
+			align-items: center;
+			gap: 4px;
+		}
+	}
+
+	&__rank {
+		> div {
+			gap: unset;
+		}
+	}
+
+	&__genres {
+		overflow: hidden;
+		display: flex;
+		align-items: flex-start;
+		gap: 8px;
+		align-self: stretch;
+	}
+
+	&__overlay {
+		display: flex;
+		width: 100%;
+		padding: 24px 8px 12px 12px;
+		flex-direction: column;
+		justify-content: flex-end;
+		align-items: flex-start;
+		position: absolute;
+		bottom: -1px;
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000 100%);
+	}
+
+	&__rated {
+		color: var(--typography-100);
+		border-left: 1px solid var(--primary-100);
+		padding-left: 12px;
+		display: flex;
+		align-items: center;
+	}
+}
