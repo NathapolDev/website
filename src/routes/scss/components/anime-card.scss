@@ -32,7 +32,10 @@
 			var(--background-raised) 2.12%,
 			color-mix(in srgb, var(--background-raised) 0%, transparent) 100%
 		);
-		border: 1px solid var(--background-600);
+		// --background-600 was never defined, so this declaration was
+		// invalid as a whole - which silently dropped the border rather than
+		// falling back to the previous one. The --primary-200 value above is
+		// the intended one, matching the card's brand-tinted gradient.
 		height: 200px;
 		width: 300px;
 		overflow: hidden;

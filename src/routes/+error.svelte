@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from "$app/state";
+	import Button from "../lib/components/Button.svelte";
 </script>
 
 <svelte:head>
@@ -23,11 +24,11 @@
 	</p>
 
 	<nav class="errorPage__actions">
-		<a class="errorPage__button errorPage__button--primary" href="/">Back to the homepage</a>
-		<a class="errorPage__button" href="https://docs.api.jikan.moe/" rel="noopener"
-			>Read the docs</a
+		<Button type="primary" url="/">Back to the homepage</Button>
+		<Button type="secondary-outline" url="https://docs.api.jikan.moe/" urlTarget="_blank"
+			>Read the docs</Button
 		>
-		<a class="errorPage__button" href="/showcase">Browse the showcase</a>
+		<Button type="secondary-outline" url="/showcase">Browse the showcase</Button>
 	</nav>
 </section>
 
@@ -68,46 +69,6 @@
 			flex-wrap: wrap;
 			gap: 12px;
 			justify-content: center;
-		}
-
-		&__button {
-			display: inline-flex;
-			align-items: center;
-			gap: 8px;
-			padding: 12px 20px;
-			border: 1px solid var(--background-300);
-			border-radius: var(--border-radius-large);
-			background: var(--background-100);
-			color: var(--typography-100);
-			text-decoration: none;
-			transition:
-				border-color 0.2s ease,
-				background 0.2s ease;
-
-			&:hover {
-				border-color: var(--primary-400);
-				background: var(--background-200);
-			}
-
-			&--primary {
-				background: var(--primary-500);
-				border-color: var(--primary-500);
-
-				&:hover {
-					background: var(--primary-400);
-				}
-			}
-		}
-
-		a:focus-visible {
-			outline: 2px solid var(--primary-400);
-			outline-offset: 2px;
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.errorPage__button {
-			transition: none;
 		}
 	}
 </style>

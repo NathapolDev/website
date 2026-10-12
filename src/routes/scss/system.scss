@@ -70,11 +70,18 @@
 	--status-request-bg: #1d2a18;
 	--status-duration-fg: #7fe368;
 
-	// The syntax-highlighted snippet in the "How it works" diagram. Its pastel
-	// token colours are chosen for a dark surface, so this surface stays dark in
-	// both themes rather than following the page - it reads as an editor panel.
-	--surface-code: #0f1115;
-	--surface-code-fg: #b2caff;
+	// The syntax-highlighted snippet in the "How it works" diagram. Both the
+	// surface and the token colours are themed: the panel used to be pinned to
+	// #0f1115 in both themes, which left a dark island on the light page.
+	//
+	// Each token is measured for contrast against its own panel rather than the
+	// page, and both palettes clear 4.5:1 at the 12px these are rendered at.
+	--dark-surface-code: #0f1115;
+	--dark-surface-code-fg: #b2caff;
+	--dark-surface-code-dull: #93addd;
+	--dark-surface-code-yellow: #f2c94c;
+	--dark-surface-code-purple: #bb6bd9;
+	--dark-surface-code-value: #eb5757;
 
 	// Scrims drawn over imagery. Always dark regardless of theme, because they
 	// exist to keep text legible on top of a cover image.
@@ -102,16 +109,26 @@
 	--light-cursor-color: #262d3a;
 	// Status colours need their own light variants: the dark values were picked
 	// to sit on near-black chips and are far too light on a white page.
+	--light-surface-code: #f7f8fb;
+	--light-surface-code-fg: #39415a;
+	--light-surface-code-dull: #57627a;
+	--light-surface-code-yellow: #7d5600;
+	--light-surface-code-purple: #6b3fa0;
+	--light-surface-code-value: #a40e26;
+
 	--light-status-airing: #9a4318;
 	--light-status-finished: #1f4c9c;
 	--light-status-upcoming: #106b47;
 	--light-status-health: #156a2c;
 }
 
-// Dark is the default theme. Declaring it unconditionally (rather than only
-// inside prefers-color-scheme: dark) means clients that send no preference at
-// all still get the intended palette instead of an unstyled page.
-:root {
+// One list per theme, included by every rule that applies them. Both the
+// prefers-color-scheme rules and the data-theme overrides use the same mixins, so
+// the media query and the toggle can never list different tokens. They previously
+// drifted: the toggle remapped 15 of the 29 tokens the media query did, which left
+// card surfaces, the primary button, the status chips and the syntax palette
+// stuck on whichever theme the OS asked for.
+@mixin theme-dark {
 	--background-500: var(--dark-background-500);
 	--background-400: var(--dark-background-400);
 	--background-300: var(--dark-background-300);
@@ -122,16 +139,6 @@
 	--background-button-primary-default: var(--dark-background-button-primary-default);
 	--background-button-primary-hover: var(--dark-background-button-primary-hover);
 	--background-language-dotnet: var(--dark-background-language-dotnet);
-	--primary-900: var(--dark-primary-900);
-	--primary-800: var(--dark-primary-800);
-	--primary-700: var(--dark-primary-700);
-	--primary-600: var(--dark-primary-600);
-	--primary-500: var(--dark-primary-500);
-	--primary-400: var(--dark-primary-400);
-	--primary-300: var(--dark-primary-300);
-	--primary-200: var(--dark-primary-200);
-	--primary-100: var(--dark-primary-100);
-	--primary-000: var(--dark-primary-000);
 	--typography-100: var(--dark-typography-100);
 	--typography-200: var(--dark-typography-200);
 	--typography-300: var(--dark-typography-300);
@@ -145,6 +152,65 @@
 	--status-finished: var(--dark-status-finished);
 	--status-upcoming: var(--dark-status-upcoming);
 	--status-health: var(--dark-status-health);
+	--surface-code: var(--dark-surface-code);
+	--surface-code-fg: var(--dark-surface-code-fg);
+	--surface-code-dull: var(--dark-surface-code-dull);
+	--surface-code-yellow: var(--dark-surface-code-yellow);
+	--surface-code-purple: var(--dark-surface-code-purple);
+	--surface-code-value: var(--dark-surface-code-value);
+}
+
+@mixin theme-light {
+	--background-500: var(--light-background-500);
+	--background-400: var(--light-background-400);
+	--background-300: var(--light-background-300);
+	--background-raised: var(--light-background-raised);
+	--background-200: var(--light-background-200);
+	--background-100: var(--light-background-100);
+	--background-000: var(--light-background-000);
+	--background-button-primary-default: var(--primary-500);
+	--background-button-primary-hover: var(--primary-600);
+	--background-language-dotnet: var(--dark-background-language-dotnet);
+	--typography-100: var(--light-typography-100);
+	--typography-200: var(--light-typography-200);
+	--typography-300: var(--light-typography-300);
+	--typography-400: var(--light-typography-400);
+	--border-patreon-gradient-color-start: var(--light-border-patreon-gradient-color-start);
+	--border-patreon-gradient-color-stop: var(--light-border-patreon-gradient-color-stop);
+	--border-default-gradient-color-start: var(--light-border-default-gradient-color-start);
+	--border-default-gradient-color-stop: var(--light-border-default-gradient-color-stop);
+	--cursor-color: var(--light-cursor-color);
+	--status-airing: var(--light-status-airing);
+	--status-finished: var(--light-status-finished);
+	--status-upcoming: var(--light-status-upcoming);
+	--status-health: var(--light-status-health);
+	--surface-code: var(--light-surface-code);
+	--surface-code-fg: var(--light-surface-code-fg);
+	--surface-code-dull: var(--light-surface-code-dull);
+	--surface-code-yellow: var(--light-surface-code-yellow);
+	--surface-code-purple: var(--light-surface-code-purple);
+	--surface-code-value: var(--light-surface-code-value);
+}
+
+@mixin theme-brand {
+	--primary-900: var(--dark-primary-900);
+	--primary-800: var(--dark-primary-800);
+	--primary-700: var(--dark-primary-700);
+	--primary-600: var(--dark-primary-600);
+	--primary-500: var(--dark-primary-500);
+	--primary-400: var(--dark-primary-400);
+	--primary-300: var(--dark-primary-300);
+	--primary-200: var(--dark-primary-200);
+	--primary-100: var(--dark-primary-100);
+	--primary-000: var(--dark-primary-000);
+}
+
+// Dark is the default theme. Declaring it unconditionally (rather than only
+// inside prefers-color-scheme: dark) means clients that send no preference at
+// all still get the intended palette instead of an unstyled page.
+:root {
+	@include theme-brand;
+	@include theme-dark;
 }
 
 // Light theme. Only surfaces and text invert; the brand blues (--primary-*) are
@@ -152,29 +218,7 @@
 // the same identity in both themes.
 @media (prefers-color-scheme: light) {
 	:root {
-		--background-500: var(--light-background-500);
-		--background-400: var(--light-background-400);
-		--background-300: var(--light-background-300);
-		--background-raised: var(--light-background-raised);
-		--background-200: var(--light-background-200);
-		--background-100: var(--light-background-100);
-		--background-000: var(--light-background-000);
-		--background-button-primary-default: var(--primary-500);
-		--background-button-primary-hover: var(--primary-600);
-		--background-language-dotnet: var(--dark-background-language-dotnet);
-		--typography-100: var(--light-typography-100);
-		--typography-200: var(--light-typography-200);
-		--typography-300: var(--light-typography-300);
-		--typography-400: var(--light-typography-400);
-		--border-patreon-gradient-color-start: var(--light-border-patreon-gradient-color-start);
-		--border-patreon-gradient-color-stop: var(--light-border-patreon-gradient-color-stop);
-		--border-default-gradient-color-start: var(--light-border-default-gradient-color-start);
-		--border-default-gradient-color-stop: var(--light-border-default-gradient-color-stop);
-		--cursor-color: var(--light-cursor-color);
-		--status-airing: var(--light-status-airing);
-		--status-finished: var(--light-status-finished);
-		--status-upcoming: var(--light-status-upcoming);
-		--status-health: var(--light-status-health);
+		@include theme-light;
 	}
 }
 
@@ -393,21 +437,11 @@ a:visited {
 // prefers-color-scheme rules so they win at equal specificity, which lets the
 // toggle override the OS preference while "system" falls back to it.
 :root[data-theme="dark"] {
-	--background-500: var(--dark-background-500);
-	--background-400: var(--dark-background-400);
-	--background-300: var(--dark-background-300);
-	--background-200: var(--dark-background-200);
-	--background-100: var(--dark-background-100);
-	--background-000: var(--dark-background-000);
-	--typography-100: var(--dark-typography-100);
-	--typography-200: var(--dark-typography-200);
-	--typography-300: var(--dark-typography-300);
-	--typography-400: var(--dark-typography-400);
-	--border-patreon-gradient-color-start: var(--dark-border-patreon-gradient-color-start);
-	--border-patreon-gradient-color-stop: var(--dark-border-patreon-gradient-color-stop);
-	--border-default-gradient-color-start: var(--dark-border-default-gradient-color-start);
-	--border-default-gradient-color-stop: var(--dark-border-default-gradient-color-stop);
-	--cursor-color: var(--dark-cursor-color);
+	@include theme-dark;
+}
+
+:root[data-theme="light"] {
+	@include theme-light;
 }
 
 :root[data-theme="light"] {

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
+	import Button from "./Button.svelte";
 
 	/** Short label for what failed, e.g. "the integrations list". */
 	let { label, children }: { label: string; children?: Snippet } = $props();
@@ -24,7 +25,7 @@
 	{#snippet failed(error: unknown, reset)}
 		<div class="sectionFallback" role="status">
 			<p class="sectionFallback__label">{label} could not be displayed.</p>
-			<button type="button" class="sectionFallback__retry" onclick={reset}>Try again</button>
+			<Button type="primary" callback={reset}>Try again</Button>
 			<!-- Surface the message rather than swallowing it; it is useful in dev
 			     and harmless in production, where the detail is generic. -->
 			<p class="sectionFallback__detail">{describe(error)}</p>
@@ -50,25 +51,6 @@
 			margin: 0;
 			color: var(--typography-100);
 			font-size: 14px;
-		}
-
-		&__retry {
-			padding: 8px 16px;
-			border: 1px solid var(--background-300);
-			border-radius: var(--border-radius-small);
-			background: var(--primary-500);
-			color: #fff;
-			font-size: 13px;
-			cursor: pointer;
-
-			&:hover {
-				background: var(--primary-400);
-			}
-
-			&:focus-visible {
-				outline: 2px solid var(--primary-400);
-				outline-offset: 2px;
-			}
 		}
 
 		&__detail {
