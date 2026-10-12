@@ -5,6 +5,7 @@
 	import Features from "../lib/components/sections/Features.svelte";
 	import HowItWorks from "../lib/components/sections/HowItWorks.svelte";
 	import Integrations from "../lib/components/sections/Integrations.svelte";
+	import SectionBoundary from "../lib/components/SectionBoundary.svelte";
 	import type { GithubData } from "../lib/types/github";
 
 	// Repository stats and contributors are fetched at build time by
@@ -56,9 +57,17 @@
 
 <Nav />
 
-<Hero />
-<Features />
-<HowItWorks {github} />
-<Integrations />
+<SectionBoundary label="The hero">
+	<Hero />
+</SectionBoundary>
+<SectionBoundary label="The features list">
+	<Features />
+</SectionBoundary>
+<SectionBoundary label="The architecture diagram">
+	<HowItWorks {github} />
+</SectionBoundary>
+<SectionBoundary label="The integrations list">
+	<Integrations />
+</SectionBoundary>
 
 <Footer />

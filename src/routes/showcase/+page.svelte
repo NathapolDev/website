@@ -1,5 +1,6 @@
 <script>
 	import Nav from "../../lib/components/Nav.svelte";
+	import SectionBoundary from "../../lib/components/SectionBoundary.svelte";
 	import Footer from "../../lib/components/Footer.svelte";
 	import entries from "../../data/showcase";
 	import ShowcaseCard from "../../lib/components/ShowcaseCard.svelte";
@@ -54,17 +55,19 @@
 
 <Nav />
 
-<section class="showcaseWrapper">
-	<div class="showcase">
-		{#each [...entries].reverse() as entry (entry.url)}
-			<ShowcaseCard
-				title={entry.title}
-				url={entry.url}
-				imageUrl={entry.imageUrl}
-				summary={entry.summary}
-			/>
-		{/each}
-	</div>
-</section>
+<SectionBoundary label="The showcase">
+	<section class="showcaseWrapper">
+		<div class="showcase">
+			{#each [...entries].reverse() as entry (entry.url)}
+				<ShowcaseCard
+					title={entry.title}
+					url={entry.url}
+					imageUrl={entry.imageUrl}
+					summary={entry.summary}
+				/>
+			{/each}
+		</div>
+	</section>
+</SectionBoundary>
 
 <Footer />

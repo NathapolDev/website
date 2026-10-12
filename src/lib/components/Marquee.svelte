@@ -1,49 +1,46 @@
 <script lang="ts">
 	import JetbrainsLogo from "../images/jetbrains.svg";
 	import Divider from "./Divider.svelte";
-	import { onMount } from "svelte";
 	import supporters from "../../data/supporters";
-
-	// $state() holds undefined until the element binds during mount.
-	let track = $state<HTMLDivElement>();
-
-	onMount(() => {
-		if (!track) return;
-
-		// Duplicate the track once. The CSS animation translates the track by
-		// exactly -50%, i.e. one full copy, so the loop is seamless.
-		track.insertAdjacentHTML("beforeend", track.innerHTML);
-	});
 </script>
 
 <footer class="shoutouts">
-	<div class="marquee" bind:this={track}>
-		{#if supporters.sugoi_supporter.length > 0}
-			<p>Sugoi Supporters</p>
-		{/if}
-		{#each supporters.sugoi_supporter.sort() as supporter (supporter)}
-			<code>{supporter}</code>
-		{/each}
-		<Divider type="circle" />
+	<div class="marquee">
+		// The strip is rendered twice and the CSS animation translates the track by // exactly
+		-50%, i.e. one copy, so the loop is seamless. It used to clone the // track with
+		insertAdjacentHTML, which manipulates the DOM behind Svelte's // back and can desync if
+		Svelte ever re-renders that subtree.
+		{#snippet strip()}
+			{#if supporters.sugoi_supporter.length > 0}
+				<p>Sugoi Supporters</p>
+			{/if}
+			{#each supporters.sugoi_supporter.sort() as supporter (supporter)}
+				<code>{supporter}</code>
+			{/each}
+			<Divider type="circle" />
 
-		{#if supporters.supporter.length > 0}
-			<p>Supporters</p>
-		{/if}
-		{#each supporters.supporter.sort() as supporter (supporter)}
-			<code>{supporter}</code>
-		{/each}
-		<Divider type="circle" />
+			{#if supporters.supporter.length > 0}
+				<p>Supporters</p>
+			{/if}
+			{#each supporters.supporter.sort() as supporter (supporter)}
+				<code>{supporter}</code>
+			{/each}
+			<Divider type="circle" />
 
-		{#if supporters.supporter.length > 0}
-			<p>Jikan's development is powered by</p>
-		{/if}
-		{#each supporters.powered_by as poweredBy (poweredBy.name)}
-			<a href={poweredBy.url} target="_blank">
-				<img src={JetbrainsLogo} height={35} width={35} alt={poweredBy.name} />
-				<code>{poweredBy.name}</code>
-			</a>
-		{/each}
-		<Divider type="circle" />
+			{#if supporters.powered_by.length > 0}
+				<p>Jikan's development is powered by</p>
+			{/if}
+			{#each supporters.powered_by as poweredBy (poweredBy.name)}
+				<a href={poweredBy.url} target="_blank">
+					<img src={JetbrainsLogo} height={35} width={35} alt={poweredBy.name} />
+					<code>{poweredBy.name}</code>
+				</a>
+			{/each}
+			<Divider type="circle" />
+		{/snippet}
+
+		{@render strip()}
+		{@render strip()}
 	</div>
 </footer>
 

@@ -22,10 +22,25 @@ export default [
 			// TypeScript already reports unused bindings with full type information,
 			// so the base rule would double-report every typed file.
 			"no-unused-vars": "off",
+			// Requires SvelteKit 3's resolve() for internal links. Most of our
+			// flagged sites pass a dynamic `url` prop that may well be an external
+			// link, which resolve() is not designed for. Adopting this properly
+			// means distinguishing the two at each call site and testing the
+			// result under a non-root base path - that belongs with the Kit 3
+			// upgrade, not as a drive-by rewrite.
+			"svelte/no-navigation-without-resolve": "off",
 			"@typescript-eslint/no-unused-vars": [
 				"warn",
 				{ argsIgnorePattern: "^_", varsIgnorePattern: "^_" }
 			]
+		}
+	},
+	{
+		// Rune modules are TypeScript too, so they need the TS parser rather
+		// than the default JS one.
+		files: ["**/*.svelte.ts", "**/*.svelte.js"],
+		languageOptions: {
+			parser: ts.parser
 		}
 	},
 	{
