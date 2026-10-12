@@ -230,6 +230,13 @@
 		}
 	}
 
+	// Replaces an inline style="display: flex" that was on the "Free & Open
+	// Source" supporting heading in Features, so it sits with the other type
+	// utilities and can respond to media queries.
+	&--heading-inline {
+		display: flex;
+	}
+
 	&--center {
 		align-items: center;
 		text-align: center;

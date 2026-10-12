@@ -1,4 +1,5 @@
 <script>
+	import SectionHeading from "../SectionHeading.svelte";
 	import InlineBanner from "../InlineBanner.svelte";
 	import Button from "../Button.svelte";
 	import ButtonGroup from "../ButtonGroup.svelte";
@@ -24,14 +25,12 @@
 				>We rely on you! Support us on Patreon</InlineBanner
 			>
 
-			<div class="type--group-heading-and-content">
-				<h1>Jikan API</h1>
-				<p>
-					Jikan (時間) is an unofficial & open-source API for the <strong
+			<SectionHeading level={1}>
+				{#snippet title()}Jikan API{/snippet}
+				{#snippet subtitle()}Jikan (時間) is an unofficial & open-source API for the <strong
 						>“most active online anime + manga community and database”</strong
-					> — MyAnimeList.
-				</p>
-			</div>
+					> — MyAnimeList.{/snippet}
+			</SectionHeading>
 
 			<BasicInfoDisplayGrouped>
 				<BasicInfoDisplay

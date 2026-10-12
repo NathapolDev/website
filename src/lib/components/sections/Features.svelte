@@ -1,4 +1,5 @@
 <script>
+	import SectionHeading from "../SectionHeading.svelte";
 	import Button from "../Button.svelte";
 	import ButtonGroup from "../ButtonGroup.svelte";
 	import BasicInfoDisplay from "../DataDisplay/BasicInfoDisplay.svelte";
@@ -14,24 +15,16 @@
 	<div class="features">
 		<div class="left">
 			<div class="open-source">
-				<div class="type--group-heading-and-content">
-					<h2>Free & Open Source</h2>
-					<h3 style="display: flex">
-						— all under <Button
+				<SectionHeading level={2} subtitleTag="h3" subtitleClass="type--heading-inline">
+					{#snippet title()}Free & Open Source{/snippet}
+					{#snippet subtitle()}— all under <Button
 							type="link-heading"
 							urlTarget="_blank"
 							url="https://choosealicense.com/licenses/mit/"
 							><IconArrowDownLeft class="external-link" size={32} stroke={1.5} />MIT
 							Licensing</Button
-						>
-					</h3>
-					<p>
-						Focus on building while we keep the requests rolling. With nearly limitless
-						quota on requests, you have the freedom to create without the need of
-						writing/updating your own parsers or depending on limited API support. Want
-						to launch your own private Jikan API? Go ahead.
-					</p>
-				</div>
+						>{/snippet}
+				</SectionHeading>
 
 				<Button type="primary" url="https://github.com/jikan-me" urlTarget="_blank">
 					<IconArrowDownLeft class="external-link" size={20} stroke={1.5} />
@@ -44,15 +37,14 @@
 				style="background-image: url({ShowcaseBackground})"
 			>
 				<div class="overlay">
-					<div class="type--group-heading-and-content">
-						<h2>⚡ Powered by Jikan</h2>
-						<p>
-							Jikan was launched in late 2017 and has grown rapidly since. It is now
-							handling over 25+ million requests weekly, <strong>free of cost</strong
+					<SectionHeading level={2}>
+						{#snippet title()}⚡ Powered by Jikan{/snippet}
+						{#snippet subtitle()}Jikan was launched in late 2017 and has grown rapidly
+							since. It is now handling over 25+ million requests weekly, <strong
+								>free of cost</strong
 							>.<br /><br /> A public showcase is available where you can view apps
-							and projects using Jikan and even <strong>add your own</strong> there!
-						</p>
-					</div>
+							and projects using Jikan and even <strong>add your own</strong> there!{/snippet}
+					</SectionHeading>
 
 					<ButtonGroup>
 						<Button url="/showcase" type="secondary-outline" size="full-width">
@@ -73,13 +65,11 @@
 		</div>
 
 		<div class="right">
-			<div class="type--group-heading-and-content">
-				<h2>Features</h2>
-				<p>
-					Jikan has a significant coverage over public MyAnimeList pages with more
-					upcoming features on the roadmap.
-				</p>
-			</div>
+			<SectionHeading level={2}>
+				{#snippet title()}Features{/snippet}
+				{#snippet subtitle()}Jikan has a significant coverage over public MyAnimeList pages
+					with more upcoming features on the roadmap.{/snippet}
+			</SectionHeading>
 
 			<Banner type="info" size="small">
 				Jikan only supports non-authenticated requests. This means, you can not authenticate

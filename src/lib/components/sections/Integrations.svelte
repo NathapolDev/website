@@ -1,4 +1,5 @@
 <script>
+	import SectionHeading from "../SectionHeading.svelte";
 	import Button from "../Button.svelte";
 	import Divider from "../Divider.svelte";
 	import IntegrationCard from "../IntegrationCard.svelte";
@@ -14,9 +15,9 @@
 <section class="integrationsWrapper" id="integrations">
 	<div class="integrations">
 		<div class="left">
-			<div class="type--group-heading-and-content">
-				<h2>Seamless integration with the languages you use and love.</h2>
-			</div>
+			<SectionHeading level={2}>
+				{#snippet title()}Seamless integration with the languages you use and love.{/snippet}
+			</SectionHeading>
 
 			<div class="integrations__body margin--top-64">
 				<div class="integrations__about">
@@ -78,9 +79,9 @@
 		</div>
 
 		<div class="right">
-			<div class="type--group-heading-and-content">
-				<h6>Available Integrations ({integrations.length})</h6>
-			</div>
+			<SectionHeading level={6}>
+				{#snippet title()}Available Integrations ({integrations.length}){/snippet}
+			</SectionHeading>
 
 			<div class="integrations__listing">
 				<div class="integrations__fadeout integrations__fadeout--top"></div>

@@ -1,5 +1,7 @@
 <script lang="ts">
+	import Connector from "../diagram/Connector.svelte";
 	import DiagramApiCard from "../diagram/DiagramApiCard.svelte";
+	import SectionHeading from "../SectionHeading.svelte";
 	import { IconCode } from "@tabler/icons-svelte";
 	import Chip from "../Chip.svelte";
 	import Contributors from "./Contributors.svelte";
@@ -18,12 +20,12 @@
 
 <section class="howItWorksWrapper" id="how-it-works">
 	<div class="howItWorks">
-		<div class="type--group-heading-and-content type--center">
-			<h2>How does this work?</h2>
-			<p>
+		<SectionHeading centered>
+			{#snippet title()}How does this work?{/snippet}
+			{#snippet subtitle()}
 				Jikan scrapes public MyAnimeList pages.<br />The service consists of two core parts.
-			</p>
-		</div>
+			{/snippet}
+		</SectionHeading>
 
 		<div class="diagram">
 			<div class="diagram__flow">
@@ -50,22 +52,14 @@
 					{/snippet}
 				</DiagramApiCard>
 
-				<div class="connector connector--horizontal">
-					<div class="connector__node"></div>
-					<div class="connector__line connector__line--horizontal"></div>
-					<div class="connector__node"></div>
-				</div>
+				<Connector orientation="horizontal" />
 
 				<div class="cardDiagramFlow">
 					<div class="cardDiagramFlow__request">
 						<Chip type="request" size="small">GET</Chip>
 						<code>/anime/1535</code>
 					</div>
-					<div class="connector connector--vertical">
-						<div class="connector__node"></div>
-						<div class="connector__line"></div>
-						<div class="connector__node"></div>
-					</div>
+					<Connector />
 					<div class="cardDiagramFlow__jikan">
 						<svg
 							width="40"
@@ -81,11 +75,7 @@
 							/>
 						</svg>
 					</div>
-					<div class="connector connector--vertical">
-						<div class="connector__node"></div>
-						<div class="connector__line"></div>
-						<div class="connector__node"></div>
-					</div>
+					<Connector />
 					<div class="cardDiagramFlow__codeWrapper">
 						<IconCode size={20} stroke={1.5} />
 
@@ -140,11 +130,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="connector connector--vertical">
-						<div class="connector__node"></div>
-						<div class="connector__line"></div>
-						<div class="connector__node"></div>
-					</div>
+					<Connector />
 					<div class="cardDiagramFlow__mal">
 						<svg
 							width="40"
@@ -178,11 +164,7 @@
 					</div>
 				</div>
 
-				<div class="connector connector--horizontal">
-					<div class="connector__node"></div>
-					<div class="connector__line connector__line--horizontal"></div>
-					<div class="connector__node"></div>
-				</div>
+				<Connector orientation="horizontal" />
 
 				<DiagramApiCard
 					title="Jikan PHP API"
