@@ -23,7 +23,7 @@
 	import RequestExamples from "../lib/components/RequestExamples.svelte";
 	import features from "../data/features.js";
 	import integrations from "../data/integrations.js";
-	import ShowcaseBackground from "../lib/images/showcase-background.png";
+	import ShowcaseBackground from "../lib/images/showcase-background.webp";
 	import Divider from "../lib/components/Divider.svelte";
 	import InputReadOnly from "../lib/components/InputReadOnly.svelte";
 	import IntegrationCard from "../lib/components/IntegrationCard.svelte";
@@ -460,9 +460,9 @@
 					{#if github.contributors}
 						<div class="avatars">
 							{#each github.contributors.slice(0,6) as contributor}
-								<a href="{contributor.html_url}" class="avatar avatar--stacked avatar--image"><img src="{contributor.avatar_url}" alt="{contributor.login}" /></a>
+								<a href="{contributor.html_url}" class="avatar avatar--stacked avatar--image"><img src="{contributor.avatar_url}" alt="{contributor.login}" loading="lazy" decoding="async" /></a>
 							{/each}
-							<a class="avatar avatar--stacked avatar--more">+{github.contributors.length - 7}</a>
+							<span class="avatar avatar--stacked avatar--more">+{github.contributors.length - 7}</span>
 						</div>
 					{/if}
 

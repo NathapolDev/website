@@ -9,7 +9,7 @@ import MalHeartBeat from "./MalHeartBeat.svelte";
     <div class="footer__body">
         <div class="footer__content">
             <div class="footer__brand">
-                <a href="https://jikan.moe" class="logo"><img src={Logo} alt="Jikan API Logo"/></a>
+                <a href="https://jikan.moe" class="logo"><img src={Logo} alt="Jikan API Logo" loading="lazy" decoding="async"/></a>
                 <p>Unofficial MyAnimeList API</p>
 
                 <MalHeartBeat />

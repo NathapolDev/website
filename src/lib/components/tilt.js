@@ -5,12 +5,20 @@ function getSettings(settings = {}) {
 
 const TRANSITION_MS = 300;
 
+// Users who ask for reduced motion get a static card: no tilt, no transition.
+const prefersReducedMotion =
+    typeof window !== 'undefined' &&
+    window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 export default function tilt(node, settingsObj) {
     const { width, height, left, top } = node.getBoundingClientRect();
     let settings = getSettings(settingsObj);
     let reverse = settings.reverse ? -1 : 1;
 
     function onMouseMove(e) {
+        if (prefersReducedMotion) return;
+
         const percX = (e.clientX - left) / width;
         const percY = (e.clientY - top) / height;
 
@@ -54,7 +62,7 @@ export default function tilt(node, settingsObj) {
         destroy() {
             node.removeEventListener('mousemove', onMouseMove);
             node.removeEventListener('mouseleave', onMouseLeave);
-            node.removeEventListener('mouseleave', onMouseEnter);
+            node.removeEventListener('mouseenter', onMouseEnter);
         },
         update(settingsObj) {
             settings = getSettings(settingsObj);

@@ -8,6 +8,13 @@ Jikan is an API for [MyAnimeList.net](https://myanimelist.net). You can find mor
 This repository represents Jikan's website - [Jikan.moe](https://jikan.moe). Please feel free to contribute and help improve it!
 
 
+# Design
+
+- [Redesign preview (Behance)](https://www.behance.net/gallery/79464619/Jikan-API-website-re-design)
+
+The site is built with SvelteKit and SCSS. Global styles live in
+`src/routes/scss/` and are pulled in via `src/routes/scss/bootstrap.scss`.
+
 # Contributing
 This project is built using [SvelteKit](https://kit.svelte.dev/).
 

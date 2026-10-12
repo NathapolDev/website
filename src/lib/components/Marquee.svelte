@@ -4,32 +4,19 @@ import Divider from "./Divider.svelte";
 import {onMount} from "svelte";
 import supporters from "../../data/supporters.js";
 
-let marquee;
+let track;
 
 onMount(() => {
-    const clone = marquee.innerHTML;
-    const firstElement = marquee.children[0];
-
-    let i = 0;
-    marquee.insertAdjacentHTML('beforeend', clone);
-    marquee.insertAdjacentHTML('beforeend', clone);
-
-    setInterval(() => {
-        firstElement.style.marginLeft = `-${i}px`;
-
-        if (i > firstElement.clientWidth) {
-            i = 0;
-        }
-
-        i += 0.2;
-    }, 0);
+    // Duplicate the track once. The CSS animation translates the track by
+    // exactly -50%, i.e. one full copy, so the loop is seamless.
+    track.insertAdjacentHTML('beforeend', track.innerHTML);
 });
 
 
 </script>
 
-<footer class="shoutouts" bind:this={marquee}>
-    <div class="marquee">
+<footer class="shoutouts">
+    <div class="marquee" bind:this={track}>
         {#if supporters.sugoi_supporter.length > 0}
             <p>Sugoi Supporters</p>
         {/if}
@@ -77,6 +64,9 @@ onMount(() => {
         display: flex;
         align-items: center;
         gap: 32px;
+        flex: 0 0 auto;
+        width: max-content;
+        animation: marquee-scroll 45s linear infinite;
 
         p {
           color: var(--typography-400);
@@ -96,6 +86,27 @@ onMount(() => {
           white-space: nowrap;
           overflow: visible;
         }
+      }
+    }
+
+    @keyframes marquee-scroll {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    // Respect users who ask for reduced motion: stop the scroll and let the
+    // row be panned manually instead.
+    @media (prefers-reduced-motion: reduce) {
+      .shoutouts {
+        overflow-x: auto;
+      }
+
+      .marquee {
+        animation: none;
       }
     }
 </style>

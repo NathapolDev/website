@@ -236,3 +236,35 @@ a:visited
 #mobile-nav {
   display: none;
 }
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+/* Keyboard focus must stay clearly visible. `:focus-visible` avoids painting a
+   ring on mouse clicks, which is why this is preferred over `:focus`. */
+:focus-visible {
+  outline: 2px solid var(--primary-400);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-small);
+}
+
+/* Elements that had their outline suppressed (inputs inside .inputWrapper) get
+   an inset ring instead, so focus is never lost entirely. */
+.inputWrapper input:focus-visible {
+  outline: 2px solid var(--primary-400);
+  outline-offset: 1px;
+}
+
+/* Honour the OS-level motion preference. Marquee carries its own opt-out; this
+   is the site-wide safety net for transitions, the card tilt effect, and the
+   typewriter/scramble animations used across components. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

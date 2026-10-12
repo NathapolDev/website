@@ -48,7 +48,7 @@
         use:tilt={{scale:1, reverse:true}}
     >
         <div class="cardAnime__cover">
-            <img src="{imageUrl}" title="{title}" />
+            <img src="{imageUrl}" title="{title}" alt="{title}" loading="lazy" decoding="async" />
             <div class="cardAnime__overlay">
                 <div class="cardAnime__rated">
                     <small>{rating === null ? "" : string.ratedToSmall(rating)}</small>

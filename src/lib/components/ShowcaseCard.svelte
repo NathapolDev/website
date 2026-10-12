@@ -9,7 +9,7 @@
 </script>
 
 <a href="{url}" target="_blank" class="cardShowcase">
-    <div class="cardShowcase__image"><img src="{imageUrl}" alt="{title}" /></div>
+    <div class="cardShowcase__image"><img src="{imageUrl}" alt="{title}" loading="lazy" decoding="async" /></div>
     <div class="cardShowcase__meta">
         <strong class="cardShowcase__title">{title}</strong>
         <p class="cardShowcase__summary">{summary}</p>
