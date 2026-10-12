@@ -111,6 +111,8 @@
 {/if}
 
 <style lang="scss">
+    @use "sass:color";
+
     .cardAnime {
       position: relative;
       display: inline-flex;
@@ -119,8 +121,8 @@
       gap: 16px;
       background: linear-gradient(var(--background-100), var(--background-100)) padding-box,
       linear-gradient(to left,
-                      transparentize(#1847B1, 0.8),
-                      transparentize(#A1C4F7, 0.8)
+                      color.change(#1847B1, $alpha: 0.2),
+                      color.change(#A1C4F7, $alpha: 0.2)
       ) border-box;
       border: 1px solid transparent;
       border-radius: var(--border-radius-large);

@@ -535,7 +535,6 @@
 					<IntegrationCard
 							supportsV3={integration.supportsV3}
 							supportsV4={integration.supportsV4}
-							type={integration.type}
 							author={integration.author}
 							title={integration.title}
 							language={integration.language}

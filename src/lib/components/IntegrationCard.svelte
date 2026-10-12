@@ -3,7 +3,6 @@
 
     export let supportsV3 = false;
     export let supportsV4 = false;
-    export let type = 'Wrapper';
     export let author = null;
     export let title = null;
     export let language = null;
