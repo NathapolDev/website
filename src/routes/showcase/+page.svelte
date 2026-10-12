@@ -1,7 +1,7 @@
 <script>
 	import Nav from "../../lib/components/Nav.svelte";
 	import Footer from "../../lib/components/Footer.svelte";
-	import entries from "../../data/showcase.js";
+	import entries from "../../data/showcase";
 	import ShowcaseCard from "../../lib/components/ShowcaseCard.svelte";
 </script>
 

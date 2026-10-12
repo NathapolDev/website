@@ -1,4 +1,14 @@
-export default [
+export interface IntegrationEntry {
+	type: string;
+	author: string;
+	title: string;
+	language: string;
+	supportsV3: boolean;
+	supportsV4: boolean;
+	url: string;
+}
+
+const entries: IntegrationEntry[] = [
 	{
 		type: "Wrapper",
 		author: "Zuritor",
@@ -234,3 +244,5 @@ export default [
 		url: "https://github.com/rushelasli/jikants"
 	}
 ];
+
+export default entries;

@@ -8,7 +8,7 @@
 		IconGitCommit,
 		IconHeartHandshake
 	} from "@tabler/icons-svelte";
-	import integrations from "../../../data/integrations.js";
+	import integrations from "../../../data/integrations";
 </script>
 
 <section class="integrationsWrapper" id="integrations">

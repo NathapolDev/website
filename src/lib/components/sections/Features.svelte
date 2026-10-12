@@ -7,7 +7,7 @@
 	import Banner from "../Banner.svelte";
 	import ShowcaseBackground from "../../images/showcase-background.webp";
 	import { IconArrowDownLeft, IconArrowNarrowRight, IconCirclePlus } from "@tabler/icons-svelte";
-	import features from "../../../data/features.js";
+	import features from "../../../data/features";
 </script>
 
 <section class="featuresWrapper" id="features">

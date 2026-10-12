@@ -1,4 +1,12 @@
-export default [
+export interface ShowcaseEntry {
+	title: string;
+	summary: string;
+	/** Direct link to the preview image; the README requires an explicit file extension. */
+	imageUrl: string;
+	url: string;
+}
+
+const entries: ShowcaseEntry[] = [
 	{
 		title: "Anime Flow",
 		summary: "Discover anime via a flowchart",
@@ -630,13 +638,6 @@ export default [
 		url: "https://anism.moe"
 	},
 	{
-		title: "Shinakamana",
-		summary:
-			"Discover and explore your favorite anime series with detailed information and updates",
-		imageUrl: "https://shinakamana.vercel.app/screenshot.png",
-		url: "https://shinakamana.vercel.app/"
-	},
-	{
 		title: "Anime Filler Checker",
 		summary:
 			"Browser extension that auto-detects anime on streaming sites, shows filler/canon badges, and enriches episode info with MAL data via Jikan API.",
@@ -658,3 +659,5 @@ export default [
 		url: "https://sorai-app.vercel.app/"
 	}
 ];
+
+export default entries;
