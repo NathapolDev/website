@@ -3,6 +3,7 @@
 	--dark-background-500: #3c4558;
 	--dark-background-400: #262f43;
 	--dark-background-300: #1f2635;
+	--dark-background-raised: #1f2635;
 	--dark-background-200: #161922;
 	--dark-background-100: #121419;
 	--dark-background-000: #0f1115;
@@ -86,6 +87,7 @@
 	--light-background-500: #b9c2d2;
 	--light-background-400: #b9c4d6;
 	--light-background-300: #c3ccdd;
+	--light-background-raised: #f7f8fb;
 	--light-background-200: #eef1f6;
 	--light-background-100: #f7f8fb;
 	--light-background-000: #ffffff;
@@ -113,6 +115,7 @@
 	--background-500: var(--dark-background-500);
 	--background-400: var(--dark-background-400);
 	--background-300: var(--dark-background-300);
+	--background-raised: var(--dark-background-raised);
 	--background-200: var(--dark-background-200);
 	--background-100: var(--dark-background-100);
 	--background-000: var(--dark-background-000);
@@ -152,6 +155,7 @@
 		--background-500: var(--light-background-500);
 		--background-400: var(--light-background-400);
 		--background-300: var(--light-background-300);
+		--background-raised: var(--light-background-raised);
 		--background-200: var(--light-background-200);
 		--background-100: var(--light-background-100);
 		--background-000: var(--light-background-000);

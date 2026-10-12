@@ -64,7 +64,7 @@
 		min-width: 200px;
 		max-width: 250px;
 
-		background: var(--background-300);
+		background: var(--background-raised);
 		border: 1px solid var(--background-400);
 		border-radius: var(--border-radius-large);
 		flex: 1;

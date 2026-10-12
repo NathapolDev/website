@@ -369,7 +369,7 @@
 	&__line {
 		width: 1px;
 		height: 40px;
-		background: var(--background-300);
+		background: var(--background-raised);
 
 		&--horizontal {
 			width: 40px;
@@ -382,7 +382,7 @@
 	width: 30px;
 	height: 30px;
 
-	background: var(--background-300);
+	background: var(--background-raised);
 	border: 2px solid var(--background-200);
 	border-radius: 100%;
 	overflow: hidden;

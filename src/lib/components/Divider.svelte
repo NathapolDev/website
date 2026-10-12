@@ -21,7 +21,7 @@
 		&--type-line {
 			width: 100%;
 			height: 0.5px;
-			background: var(--background-300);
+			background: var(--background-raised);
 		}
 	}
 </style>

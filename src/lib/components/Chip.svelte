@@ -65,7 +65,7 @@
 
 		&--type {
 			&-flat {
-				background: var(--background-300);
+				background: var(--background-raised);
 			}
 
 			&-outline {

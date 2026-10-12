@@ -97,7 +97,7 @@
 				text-decoration: underline;
 
 				&:hover {
-					background: var(--background-300);
+					background: var(--background-raised);
 				}
 			}
 

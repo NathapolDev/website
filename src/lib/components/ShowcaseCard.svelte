@@ -39,7 +39,7 @@
 		&__image {
 			width: 300px;
 			border-radius: var(--border-radius-large);
-			background: var(--background-300);
+			background: var(--background-raised);
 			overflow: hidden;
 			aspect-ratio: 16/9;
 			transition: all 1s ease;
@@ -66,7 +66,7 @@
 		}
 
 		&:hover {
-			background: var(--background-300);
+			background: var(--background-raised);
 
 			.cardShowcase__image img {
 				transform: scale(1.1, 1.1);
