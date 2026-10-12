@@ -17,13 +17,12 @@
 	let isMinimized = $derived(scrollY > 50 ? "navWrapper--minimize" : "");
 	function toggleMobileNav() {
 		mobileNavToggled = !mobileNavToggled;
-		document.getElementById("nav")?.classList.toggle("active");
 	}
 </script>
 
 <svelte:window bind:scrollY />
 
-<div id="nav" class="navWrapper {isMinimized}">
+<div id="nav" class="navWrapper {isMinimized}" class:active={mobileNavToggled}>
 	<nav class="nav">
 		<div class="nav__top">
 			<a href="/" class="logo"><img src={Logo} alt="Jikan API Logo" /></a>

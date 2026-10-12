@@ -2,6 +2,11 @@
 	import JetbrainsLogo from "../images/jetbrains.svg";
 	import Divider from "./Divider.svelte";
 	import supporters from "../../data/supporters";
+
+	// Sorted copies. Calling .sort() inline sorted the imported module's arrays
+	// in place and re-ran the comparison on every render.
+	const sugoiSupporters = [...supporters.sugoi_supporter].sort();
+	const backers = [...supporters.supporter].sort();
 </script>
 
 <footer class="shoutouts">
@@ -14,7 +19,7 @@
 			{#if supporters.sugoi_supporter.length > 0}
 				<p>Sugoi Supporters</p>
 			{/if}
-			{#each supporters.sugoi_supporter.sort() as supporter (supporter)}
+			{#each sugoiSupporters as supporter (supporter)}
 				<code>{supporter}</code>
 			{/each}
 			<Divider type="circle" />
@@ -22,7 +27,7 @@
 			{#if supporters.supporter.length > 0}
 				<p>Supporters</p>
 			{/if}
-			{#each supporters.supporter.sort() as supporter (supporter)}
+			{#each backers as supporter (supporter)}
 				<code>{supporter}</code>
 			{/each}
 			<Divider type="circle" />
