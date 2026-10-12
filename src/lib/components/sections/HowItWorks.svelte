@@ -13,6 +13,7 @@
 		IconStar
 	} from "@tabler/icons-svelte";
 	import { tooltip } from "@svelte-plugins/tooltips";
+	import Contributors from "./Contributors.svelte";
 	import type { GithubData } from "../../types/github";
 
 	/**
@@ -20,9 +21,6 @@
 	 * scripts/fetch-github.mjs. Always fully populated: the script emits an
 	 * empty-but-valid payload rather than failing when GitHub is unreachable.
 	 */
-	/** How many contributor avatars are rendered before the "+N" overflow chip. */
-	const CONTRIBUTORS_SHOWN = 6;
-
 	interface Props {
 		github: GithubData;
 	}
@@ -330,42 +328,7 @@
 				</div>
 			</div>
 
-			<div class="diagram__contributorsWrapper">
-				<div class="diagram__contributors">
-					<div class="diagram__contributorsBody">
-						<IconInfoCircle size={20} stroke={1.5} />
-						<p>
-							You can help us by contributing and reporting issues - so we can keep
-							this API running bug-free.
-						</p>
-					</div>
-
-					{#if github.contributors}
-						<div class="avatars">
-							{#each github.contributors.slice(0, 6) as contributor (contributor.login)}
-								<a
-									href={contributor.html_url}
-									class="avatar avatar--stacked avatar--image"
-									><img
-										src={contributor.avatar_url}
-										alt={contributor.login}
-										loading="lazy"
-										decoding="async"
-									/></a
-								>
-							{/each}
-							<span class="avatar avatar--stacked avatar--more"
-								>+{Math.max(
-									github.contributors.length - CONTRIBUTORS_SHOWN,
-									0
-								)}</span
-							>
-						</div>
-					{/if}
-
-					<div class="diagram__contributorsBorderHighlight"></div>
-				</div>
-			</div>
+			<Contributors contributors={github.contributors} />
 		</div>
 	</div>
 </section>
