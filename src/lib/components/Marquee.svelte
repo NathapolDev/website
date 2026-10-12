@@ -21,7 +21,7 @@
 		{#if supporters.sugoi_supporter.length > 0}
 			<p>Sugoi Supporters</p>
 		{/if}
-		{#each supporters.sugoi_supporter.sort() as supporter}
+		{#each supporters.sugoi_supporter.sort() as supporter (supporter)}
 			<code>{supporter}</code>
 		{/each}
 		<Divider type="circle" />
@@ -29,7 +29,7 @@
 		{#if supporters.supporter.length > 0}
 			<p>Supporters</p>
 		{/if}
-		{#each supporters.supporter.sort() as supporter}
+		{#each supporters.supporter.sort() as supporter (supporter)}
 			<code>{supporter}</code>
 		{/each}
 		<Divider type="circle" />
@@ -37,7 +37,7 @@
 		{#if supporters.supporter.length > 0}
 			<p>Jikan's development is powered by</p>
 		{/if}
-		{#each supporters.powered_by as poweredBy}
+		{#each supporters.powered_by as poweredBy (poweredBy.name)}
 			<a href={poweredBy.url} target="_blank">
 				<img src={JetbrainsLogo} height={35} width={35} alt={poweredBy.name} />
 				<code>{poweredBy.name}</code>

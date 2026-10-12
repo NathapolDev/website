@@ -89,7 +89,7 @@
 			<div>
 				<h3>Available</h3>
 				<BasicInfoDisplayGrouped>
-					{#each features.available as feature}
+					{#each features.available as feature (feature.label)}
 						<BasicInfoDisplay description={feature.description}>
 							<feature.icon size={20} stroke={1.5} />
 							{#if feature.highlight}
@@ -108,7 +108,7 @@
 			<div>
 				<h3>Upcoming</h3>
 				<BasicInfoDisplayGrouped>
-					{#each features.upcoming as feature}
+					{#each features.upcoming as feature (feature.label)}
 						<BasicInfoDisplay disabled description={feature.description}>
 							<feature.icon size={20} stroke={1.5} />
 							<Chip type="outline" size="small">v{feature.onVersion}</Chip>

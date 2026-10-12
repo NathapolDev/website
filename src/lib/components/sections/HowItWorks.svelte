@@ -342,7 +342,7 @@
 
 					{#if github.contributors}
 						<div class="avatars">
-							{#each github.contributors.slice(0, 6) as contributor}
+							{#each github.contributors.slice(0, 6) as contributor (contributor.login)}
 								<a
 									href={contributor.html_url}
 									class="avatar avatar--stacked avatar--image"

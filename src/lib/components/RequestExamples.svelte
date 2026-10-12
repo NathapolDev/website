@@ -133,12 +133,12 @@
 
 <div class="cards">
 	{#if !showCards}
-		{#each { length: 6 } as _}
+		{#each { length: 6 } as _, i (i)}
 			<AnimeCard skeleton cardExit={isCardTransitioning} />
 		{/each}
 	{/if}
 	{#if showCards}
-		{#each entries as entry}
+		{#each entries as entry (entry.mal_id)}
 			<AnimeCard
 				cardExit={isCardTransitioning}
 				mal_id={entry.mal_id}

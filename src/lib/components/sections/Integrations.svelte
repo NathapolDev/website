@@ -84,7 +84,7 @@
 
 			<div class="integrations__listing">
 				<div class="integrations__fadeout integrations__fadeout--top"></div>
-				{#each integrations as integration}
+				{#each integrations as integration (integration.url)}
 					<IntegrationCard
 						supportsV3={integration.supportsV3}
 						supportsV4={integration.supportsV4}

@@ -54,7 +54,7 @@
 
 <section class="showcaseWrapper">
 	<div class="showcase">
-		{#each entries.reverse() as entry}
+		{#each entries.reverse() as entry (entry.url)}
 			<ShowcaseCard
 				title={entry.title}
 				url={entry.url}
