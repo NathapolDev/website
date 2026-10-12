@@ -42,38 +42,84 @@
 	// Page
 	--page-width: 1600px;
 	--content-width: 1300px;
+
+	// Light theme surface + text tokens. The --dark-* ramp above doubles as the
+	// brand ramp (the blues), which is theme independent; only surfaces and text
+	// invert. See the prefers-color-scheme: light block at the end of this file.
+	--light-background-500: #b9c2d2;
+	--light-background-400: #b9c4d6;
+	--light-background-300: #c3ccdd;
+	--light-background-200: #eef1f6;
+	--light-background-100: #f7f8fb;
+	--light-background-000: #ffffff;
+	--light-typography-100: #0e1117;
+	--light-typography-200: #262d3a;
+	--light-typography-300: #4f5a6e;
+	--light-typography-400: #5d6878;
+	--light-border-patreon-gradient-color-start: #ff424d;
+	--light-border-patreon-gradient-color-stop: var(--primary-500);
+	--light-border-default-gradient-color-start: var(--primary-200);
+	--light-border-default-gradient-color-stop: var(--primary-500);
+	--light-cursor-color: #262d3a;
 }
 
-@media (prefers-color-scheme: dark) {
+// Dark is the default theme. Declaring it unconditionally (rather than only
+// inside prefers-color-scheme: dark) means clients that send no preference at
+// all still get the intended palette instead of an unstyled page.
+:root {
+	--background-500: var(--dark-background-500);
+	--background-400: var(--dark-background-400);
+	--background-300: var(--dark-background-300);
+	--background-200: var(--dark-background-200);
+	--background-100: var(--dark-background-100);
+	--background-000: var(--dark-background-000);
+	--background-button-primary-default: var(--dark-background-button-primary-default);
+	--background-button-primary-hover: var(--dark-background-button-primary-hover);
+	--background-language-dotnet: var(--dark-background-language-dotnet);
+	--primary-900: var(--dark-primary-900);
+	--primary-800: var(--dark-primary-800);
+	--primary-700: var(--dark-primary-700);
+	--primary-600: var(--dark-primary-600);
+	--primary-500: var(--dark-primary-500);
+	--primary-400: var(--dark-primary-400);
+	--primary-300: var(--dark-primary-300);
+	--primary-200: var(--dark-primary-200);
+	--primary-100: var(--dark-primary-100);
+	--primary-000: var(--dark-primary-000);
+	--typography-100: var(--dark-typography-100);
+	--typography-200: var(--dark-typography-200);
+	--typography-300: var(--dark-typography-300);
+	--typography-400: var(--dark-typography-400);
+	--border-patreon-gradient-color-start: var(--dark-border-patreon-gradient-color-start);
+	--border-patreon-gradient-color-stop: var(--dark-border-patreon-gradient-color-stop);
+	--border-default-gradient-color-start: var(--dark-border-default-gradient-color-start);
+	--border-default-gradient-color-stop: var(--dark-border-default-gradient-color-stop);
+	--cursor-color: var(--dark-cursor-color);
+}
+
+// Light theme. Only surfaces and text invert; the brand blues (--primary-*) are
+// theme independent and stay as they are, so the logo and primary buttons keep
+// the same identity in both themes.
+@media (prefers-color-scheme: light) {
 	:root {
-		--background-500: var(--dark-background-500);
-		--background-400: var(--dark-background-400);
-		--background-300: var(--dark-background-300);
-		--background-200: var(--dark-background-200);
-		--background-100: var(--dark-background-100);
-		--background-000: var(--dark-background-000);
-		--background-button-primary-default: var(--dark-background-button-primary-default);
-		--background-button-primary-hover: var(--dark-background-button-primary-hover);
-		--background-language-dotnet: var(background-language-dotnet);
-		--primary-900: var(--dark-primary-900);
-		--primary-800: var(--dark-primary-800);
-		--primary-700: var(--dark-primary-700);
-		--primary-600: var(--dark-primary-600);
-		--primary-500: var(--dark-primary-500);
-		--primary-400: var(--dark-primary-400);
-		--primary-300: var(--dark-primary-300);
-		--primary-200: var(--dark-primary-200);
-		--primary-100: var(--dark-primary-100);
-		--primary-000: var(--dark-primary-000);
-		--typography-100: var(--dark-typography-100);
-		--typography-200: var(--dark-typography-200);
-		--typography-300: var(--dark-typography-300);
-		--typography-400: var(--dark-typography-400);
-		--border-patreon-gradient-color-start: var(--dark-border-patreon-gradient-color-start);
-		--border-patreon-gradient-color-stop: var(--dark-border-patreon-gradient-color-stop);
-		--border-default-gradient-color-start: var(--dark-border-default-gradient-color-start);
-		--border-default-gradient-color-stop: var(--dark-border-default-gradient-color-stop);
-		--cursor-color: var(--dark-cursor-color);
+		--background-500: var(--light-background-500);
+		--background-400: var(--light-background-400);
+		--background-300: var(--light-background-300);
+		--background-200: var(--light-background-200);
+		--background-100: var(--light-background-100);
+		--background-000: var(--light-background-000);
+		--background-button-primary-default: var(--primary-500);
+		--background-button-primary-hover: var(--primary-600);
+		--background-language-dotnet: var(--dark-background-language-dotnet);
+		--typography-100: var(--light-typography-100);
+		--typography-200: var(--light-typography-200);
+		--typography-300: var(--light-typography-300);
+		--typography-400: var(--light-typography-400);
+		--border-patreon-gradient-color-start: var(--light-border-patreon-gradient-color-start);
+		--border-patreon-gradient-color-stop: var(--light-border-patreon-gradient-color-stop);
+		--border-default-gradient-color-start: var(--light-border-default-gradient-color-start);
+		--border-default-gradient-color-stop: var(--light-border-default-gradient-color-stop);
+		--cursor-color: var(--light-cursor-color);
 	}
 }
 

@@ -79,6 +79,11 @@
 </div>
 
 <style lang="scss">
+	// The logo SVG uses fill="currentColor", so it picks up the active theme.
+	:global(.logo img) {
+		color: var(--typography-100);
+	}
+
 	.navWrapper {
 		display: flex;
 		height: 100px;

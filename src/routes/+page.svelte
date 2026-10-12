@@ -49,7 +49,9 @@
 	<meta name="og:type" content="website" />
 
 	<meta name="msapplication-TileColor" content="#da532c" />
-	<meta name="theme-color" content="#0f1115" />
+	<!-- Browser chrome follows the active theme. -->
+	<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f1115" />
+	<meta name="theme-color" media="(prefers-color-scheme: light)" content="#eef1f6" />
 </svelte:head>
 
 <Nav />

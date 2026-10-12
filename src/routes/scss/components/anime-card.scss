@@ -29,7 +29,11 @@
 	&--skeleton {
 		border-radius: 12px;
 		border: 1px solid #a1c4f7;
-		background: linear-gradient(108deg, #1f2635 2.12%, rgba(31, 38, 53, 0) 100%);
+		background: linear-gradient(
+			108deg,
+			var(--background-300) 2.12%,
+			color-mix(in srgb, var(--background-300) 0%, transparent) 100%
+		);
 		border: 1px solid var(--background-600);
 		height: 200px;
 		width: 300px;

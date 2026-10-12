@@ -90,6 +90,11 @@
 </div>
 
 <style lang="scss">
+	// The logo SVG uses fill="currentColor", so it picks up the active theme.
+	:global(.logo img) {
+		color: var(--typography-100);
+	}
+
 	.footer {
 		padding: 100px 0;
 		align-items: center;

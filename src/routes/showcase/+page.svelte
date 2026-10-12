@@ -47,14 +47,16 @@
 	<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg?v=2" color="#5bbad5" />
 	<link rel="shortcut icon" href="/favicon/favicon.ico?v=2" />
 	<meta name="msapplication-TileColor" content="#da532c" />
-	<meta name="theme-color" content="#0f1115" />
+	<!-- Browser chrome follows the active theme. -->
+	<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f1115" />
+	<meta name="theme-color" media="(prefers-color-scheme: light)" content="#eef1f6" />
 </svelte:head>
 
 <Nav />
 
 <section class="showcaseWrapper">
 	<div class="showcase">
-		{#each entries.reverse() as entry (entry.url)}
+		{#each [...entries].reverse() as entry (entry.url)}
 			<ShowcaseCard
 				title={entry.title}
 				url={entry.url}
