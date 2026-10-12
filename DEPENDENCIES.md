@@ -13,12 +13,12 @@ The advisories fall into two groups, and neither reaches the deployed site.
 
 ### 1. Vite / esbuild — dev server only (1 high, 3 moderate)
 
-| Advisory | Severity |
-| --- | --- |
-| `server.fs.deny` bypass via Windows alternate paths | high |
-| Path traversal in optimised-deps `.map` handling | moderate |
-| `launch-editor` NTLMv2 hash disclosure (Windows) | moderate |
-| `esbuild` dev-server request handling | moderate |
+| Advisory                                            | Severity |
+| --------------------------------------------------- | -------- |
+| `server.fs.deny` bypass via Windows alternate paths | high     |
+| Path traversal in optimised-deps `.map` handling    | moderate |
+| `launch-editor` NTLMv2 hash disclosure (Windows)    | moderate |
+| `esbuild` dev-server request handling               | moderate |
 
 All four affect `npm run dev` only. Nothing in this list applies to the static
 files emitted into `build/` and served by Netlify. The high-severity one is
