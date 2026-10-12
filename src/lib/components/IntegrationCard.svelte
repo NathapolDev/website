@@ -131,51 +131,51 @@
 			border-radius: 100%;
 
 			&--php {
-				background: #8a91bd;
+				background: var(--language-php);
 			}
 
 			&--javascript {
-				background: #f0db4f;
+				background: var(--language-javascript);
 			}
 
 			&--typescript {
-				background: #f0db4f;
+				background: var(--language-javascript);
 			}
 
 			&--nodejs {
-				background: #8bc500;
+				background: var(--language-nodejs);
 			}
 
 			&--dart {
-				background: #00b4ab;
+				background: var(--language-dart);
 			}
 
 			&--go {
-				background: #00add8;
+				background: var(--language-go);
 			}
 
 			&--elixir {
-				background: #4e2a8e;
+				background: var(--language-elixir);
 			}
 
 			&--kotlin {
-				background: #f85d06;
+				background: var(--language-kotlin);
 			}
 
 			&--java {
-				background: #ed8b00;
+				background: var(--language-java);
 			}
 
 			&--dotnet {
-				background: #68217a;
+				background: var(--language-dotnet);
 			}
 
 			&--python {
-				background: #20639a;
+				background: var(--language-python);
 			}
 
 			&--ruby {
-				background: #d22401;
+				background: var(--language-ruby);
 			}
 		}
 

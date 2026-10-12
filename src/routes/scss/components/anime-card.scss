@@ -1,8 +1,6 @@
 // Extracted from AnimeCard.svelte so the card can be composed from
 // sub-components: Svelte scoped styles do not reach into child
 // components, so these rules have to live at global scope.
-@use "sass:color";
-
 .cardAnime {
 	position: relative;
 	display: inline-flex;
@@ -13,8 +11,8 @@
 		linear-gradient(var(--background-100), var(--background-100)) padding-box,
 		linear-gradient(
 				to left,
-				color.change(#1847b1, $alpha: 0.2),
-				color.change(#a1c4f7, $alpha: 0.2)
+				color-mix(in srgb, var(--primary-500) 20%, transparent),
+				color-mix(in srgb, var(--primary-200) 20%, transparent)
 			)
 			border-box;
 	border: 1px solid transparent;
@@ -28,7 +26,7 @@
 
 	&--skeleton {
 		border-radius: 12px;
-		border: 1px solid #a1c4f7;
+		border: 1px solid var(--primary-200);
 		background: linear-gradient(
 			108deg,
 			var(--background-300) 2.12%,
@@ -138,7 +136,7 @@
 		align-items: flex-start;
 		position: absolute;
 		bottom: -1px;
-		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000 100%);
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, var(--overlay-scrim-strong) 100%);
 	}
 
 	&__rated {

@@ -101,7 +101,7 @@
 			&-animeStatus {
 				&-airing {
 					border: 1px solid var(--background-500);
-					color: #f7c0a1;
+					color: var(--status-airing);
 				}
 
 				&-finished {
@@ -111,13 +111,13 @@
 
 				&-upcoming {
 					border: 1px solid var(--background-500);
-					color: #21c78d;
+					color: var(--status-upcoming);
 				}
 			}
 
 			&-request {
-				background: #1d2a18;
-				color: #7fe368;
+				background: var(--status-request-bg);
+				color: var(--status-request-fg);
 				letter-spacing: 1px;
 			}
 		}

@@ -38,7 +38,7 @@
 			.duration {
 				font-size: var(--type-size-body-assistive);
 				letter-spacing: 1px;
-				color: #7fe368;
+				color: var(--status-duration-fg);
 			}
 
 			.request {
@@ -102,7 +102,7 @@
 			overflow: hidden;
 			position: relative;
 			-webkit-background-clip: padding-box;
-			border: 1px solid var(--border-blue-gradient, #a1c4f7);
+			border: 1px solid var(--border-blue-gradient, var(--primary-200));
 			transition: all 5s ease;
 			background-size: 100% 100%;
 			background-position: 50%;
@@ -117,8 +117,8 @@
 					180deg,
 					rgba(0, 0, 0, 0) 0%,
 					rgba(0, 0, 0, 0.7) 56.35%,
-					#13151a 90.44%,
-					#13151a 100%
+					var(--overlay-scrim) 90.44%,
+					var(--overlay-scrim) 100%
 				);
 				backdrop-filter: blur(2px);
 				height: 100%;
@@ -201,8 +201,8 @@
 				background: linear-gradient(
 					to right,
 					transparent 0%,
-					#a1c4f7 10%,
-					#1847b1 90%,
+					var(--primary-200) 10%,
+					var(--primary-500) 90%,
 					transparent 100%
 				);
 				display: block;

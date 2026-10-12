@@ -43,6 +43,35 @@
 	--page-width: 1600px;
 	--content-width: 1300px;
 
+	// Language identity colours for the integration card blips. These are brand
+	// colours, not theme colours, so they are deliberately identical in both
+	// themes - a Kotlin blip should not change hue when the page does.
+	--language-php: #8a91bd;
+	--language-javascript: #f0db4f;
+	--language-typescript: #f0db4f;
+	--language-nodejs: #8bc500;
+	--language-dart: #00b4ab;
+	--language-go: #00add8;
+	--language-elixir: #4e2a8e;
+	--language-kotlin: #f85d06;
+	--language-java: #ed8b00;
+	--language-dotnet: #68217a;
+	--language-python: #20639a;
+	--language-ruby: #d22401;
+
+	// Status colours. Each pair is checked against its own surface, because these
+	// sit on coloured chips and image scrims rather than on the page background.
+	--status-airing: #f7c0a1;
+	--status-upcoming: #21c78d;
+	--status-request-fg: #7fe368;
+	--status-request-bg: #1d2a18;
+	--status-duration-fg: #7fe368;
+
+	// Scrims drawn over imagery. Always dark regardless of theme, because they
+	// exist to keep text legible on top of a cover image.
+	--overlay-scrim: #13151a;
+	--overlay-scrim-strong: #000;
+
 	// Light theme surface + text tokens. The --dark-* ramp above doubles as the
 	// brand ramp (the blues), which is theme independent; only surfaces and text
 	// invert. See the prefers-color-scheme: light block at the end of this file.

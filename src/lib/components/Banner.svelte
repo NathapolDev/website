@@ -34,6 +34,6 @@
 
 	.banner--type-info {
 		border-radius: 8px;
-		background: var(--background-100, #13151a);
+		background: var(--background-100);
 	}
 </style>
