@@ -4,9 +4,12 @@
 	import { onMount } from "svelte";
 	import supporters from "../../data/supporters";
 
-	let track: HTMLDivElement;
+	// $state() holds undefined until the element binds during mount.
+	let track = $state<HTMLDivElement>();
 
 	onMount(() => {
+		if (!track) return;
+
 		// Duplicate the track once. The CSS animation translates the track by
 		// exactly -50%, i.e. one full copy, so the loop is seamless.
 		track.insertAdjacentHTML("beforeend", track.innerHTML);

@@ -1,23 +1,23 @@
 <script lang="ts">
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 </script>
 
 <svelte:head>
-	<title>{$page.status} — Jikan</title>
+	<title>{page.status} — Jikan</title>
 	<meta name="robots" content="noindex" />
 </svelte:head>
 
 <section class="errorPage">
 	<p class="errorPage__status">
-		{$page.status === 404 ? "not found" : "something went wrong"}
+		{page.status === 404 ? "not found" : "something went wrong"}
 	</p>
 
 	<h1>
-		{$page.status === 404 ? "This page does not exist" : "Jikan hit an unexpected error"}
+		{page.status === 404 ? "This page does not exist" : "Jikan hit an unexpected error"}
 	</h1>
 
 	<p class="errorPage__detail">
-		{$page.status === 404
+		{page.status === 404
 			? "The URL may be mistyped, or the page may have moved. The documentation is a good place to pick things back up."
 			: "Try reloading the page. If the problem persists, the issue tracker is the fastest route to a fix."}
 	</p>

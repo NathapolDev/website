@@ -8,7 +8,7 @@
 	import ui from "../helpers/ui";
 	import { fly } from "svelte/transition";
 
-	let requests = [
+	let requests = $state([
 		"https://api.jikan.moe/v4/anime?q=bleach&sfw",
 		"https://api.jikan.moe/v4/anime?q=新世紀&sfw",
 		"https://api.jikan.moe/v4/seasons/now?sfw",
@@ -18,15 +18,20 @@
 		"https://api.jikan.moe/v4/top/anime?type=ova",
 		"https://api.jikan.moe/v4/top/anime?type=ona",
 		"https://api.jikan.moe/v4/top/anime?type=ona"
-	];
-	$: requestUrl = requests[0];
-	$: requestIndex = 0;
+	]);
+	let requestUrl = $derived(requests[0]);
+	let requestIndex = $state(0);
+
 	let requestInterval: ReturnType<typeof setInterval> | null = null;
-	$: intervalLock = false;
-	$: showCards = false;
-	$: isCardTransitioning = false;
-	$: requestDuration = 0;
-	$: showDuration = false;
+	let intervalLock = $state(false);
+
+	let showCards = $state(false);
+
+	let isCardTransitioning = $state(false);
+
+	let requestDuration = $state(0);
+
+	let showDuration = $state(false);
 
 	/** One row of the /v4/top/anime response, as consumed by AnimeCard. */
 	type AnimeEntry = {
@@ -44,7 +49,7 @@
 		genres: { name: string }[];
 	};
 
-	let entries: AnimeEntry[] = [];
+	let entries: AnimeEntry[] = $state([]);
 
 	onMount(() => {
 		for (let i = 0; i <= math.randomInteger(2, 4); i++) {

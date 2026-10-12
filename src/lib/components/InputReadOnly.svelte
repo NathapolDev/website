@@ -2,11 +2,15 @@
 	import Button from "./Button.svelte";
 	import { IconCopy, IconCheck } from "@tabler/icons-svelte";
 
-	export let isCopyable = true;
-	export let id: string | null = null;
-	export let value = "";
+	interface Props {
+		isCopyable?: boolean;
+		id?: string | null;
+		value?: string;
+	}
 
-	$: showCopied = false;
+	let { isCopyable = true, id = null, value = "" }: Props = $props();
+
+	let showCopied = $state(false);
 
 	async function copyToClipboard() {
 		const type = "text/plain";
@@ -38,7 +42,7 @@
 	/>
 
 	{#if isCopyable}
-		<Button type="tertiary" size="small" on:message={copyToClipboard}>
+		<Button type="tertiary" size="small" onmessage={copyToClipboard}>
 			{#if showCopied}
 				<IconCheck size={20} stroke={1.5} class="inputReadOnly__copiedIcon" />
 			{:else}

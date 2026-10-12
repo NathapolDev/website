@@ -3,11 +3,15 @@
 	import Divider from "../Divider.svelte";
 	import string from "../../helpers/string";
 
-	export let statusClass: string = "";
-	export let status: string = "";
-	export let season: string | number | null = 0;
-	export let year: number | null = 0;
-	export let episodes: number | null = 0;
+	interface Props {
+		statusClass?: string;
+		status?: string;
+		season?: string | number | null;
+		year?: number | null;
+		episodes?: number | null;
+	}
+
+	let { statusClass = "", status = "", season = 0, year = 0, episodes = 0 }: Props = $props();
 </script>
 
 <Chip size="small" type={statusClass}>

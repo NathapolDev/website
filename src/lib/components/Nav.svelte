@@ -11,9 +11,9 @@
 	import Chip from "./Chip.svelte";
 	import Logo from "$lib/images/jikan.svg";
 
-	let scrollY: number = 0;
-	let mobileNavToggled = false;
-	$: isMinimized = scrollY > 50 ? "navWrapper--minimize" : "";
+	let scrollY: number = $state(0);
+	let mobileNavToggled = $state(false);
+	let isMinimized = $derived(scrollY > 50 ? "navWrapper--minimize" : "");
 	function toggleMobileNav() {
 		mobileNavToggled = !mobileNavToggled;
 		document.getElementById("nav")?.classList.toggle("active");

@@ -1,14 +1,25 @@
-<script>
-	export let type = "default";
-	export let size = "default";
-	export let length = "default";
-	export let selectable = false;
+<script lang="ts">
+	interface Props {
+		type?: string;
+		size?: string;
+		length?: string;
+		selectable?: boolean;
+		children?: import("svelte").Snippet;
+	}
 
-	$: isSelectable = !selectable ? "chip--selectable" : "";
+	let {
+		type = "default",
+		size = "default",
+		length = "default",
+		selectable = false,
+		children
+	}: Props = $props();
+
+	let isSelectable = $derived(!selectable ? "chip--selectable" : "");
 </script>
 
 <div class="chip chip--type-{type} chip--size-{size} chip--length-{length} {isSelectable}">
-	<span><slot /></span>
+	<span>{@render children?.()}</span>
 </div>
 
 <style lang="scss">

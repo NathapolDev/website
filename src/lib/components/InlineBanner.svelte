@@ -1,13 +1,17 @@
 <script lang="ts">
-	export let type: "primary" | "info" | "warning" | "patreon" = "primary";
-	export let showIcon = true;
-	export let url: string = "#";
-
 	import { IconArrowDownLeft } from "@tabler/icons-svelte";
+	interface Props {
+		type?: "primary" | "info" | "warning" | "patreon";
+		showIcon?: boolean;
+		url?: string;
+		children?: import("svelte").Snippet;
+	}
+
+	let { type = "primary", showIcon = true, url = "#", children }: Props = $props();
 </script>
 
 <a href={url} target="_blank" class="bannerInline bannerInline--type-{type}">
-	<slot />
+	{@render children?.()}
 	{#if showIcon}
 		<IconArrowDownLeft class="external-link" size={20} stroke={1.5} />
 	{/if}

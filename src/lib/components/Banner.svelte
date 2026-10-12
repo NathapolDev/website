@@ -1,14 +1,19 @@
-<script>
-	export let type = "info";
-	export let size = "small";
+<script lang="ts">
 	import { IconInfoCircle } from "@tabler/icons-svelte";
+	interface Props {
+		type?: string;
+		size?: string;
+		children?: import("svelte").Snippet;
+	}
+
+	let { type = "info", size = "small", children }: Props = $props();
 </script>
 
 <div class="banner banner--type-{type} banner--size-{size}">
 	{#if type === "info"}
 		<IconInfoCircle size={20} stroke={1.5} />
 	{/if}
-	<p><slot /></p>
+	<p>{@render children?.()}</p>
 </div>
 
 <style lang="scss">

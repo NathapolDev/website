@@ -23,7 +23,11 @@
 	/** How many contributor avatars are rendered before the "+N" overflow chip. */
 	const CONTRIBUTORS_SHOWN = 6;
 
-	export let github: GithubData;
+	interface Props {
+		github: GithubData;
+	}
+
+	let { github }: Props = $props();
 </script>
 
 <section class="howItWorksWrapper" id="how-it-works">

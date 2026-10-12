@@ -1,9 +1,13 @@
 <script lang="ts">
 	import string from "../../helpers/string";
 
-	export let imageUrl: string = "";
-	export let title: string = "";
-	export let rating: string | null = "";
+	interface Props {
+		imageUrl?: string;
+		title?: string;
+		rating?: string | null;
+	}
+
+	let { imageUrl = "", title = "", rating = "" }: Props = $props();
 </script>
 
 <div class="cardAnime__cover">

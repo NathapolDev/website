@@ -1,14 +1,25 @@
 <script lang="ts">
 	import Chip from "./Chip.svelte";
 
-	export let supportsV3 = false;
-	export let supportsV4 = false;
-	export let author: string | null = null;
-	export let title: string | null = null;
-	export let language: string | null = null;
-	export let url: string | null = null;
 	import { IconArrowDownLeft } from "@tabler/icons-svelte";
 	import Divider from "./Divider.svelte";
+	interface Props {
+		supportsV3?: boolean;
+		supportsV4?: boolean;
+		author?: string | null;
+		title?: string | null;
+		language?: string | null;
+		url?: string | null;
+	}
+
+	let {
+		supportsV3 = false,
+		supportsV4 = false,
+		author = null,
+		title = null,
+		language = null,
+		url = null
+	}: Props = $props();
 </script>
 
 <a href={url} class="cardIntegrations">

@@ -91,7 +91,7 @@
 				<BasicInfoDisplayGrouped>
 					{#each features.available as feature}
 						<BasicInfoDisplay description={feature.description}>
-							<svelte:component this={feature.icon} size={20} stroke={1.5} />
+							<feature.icon size={20} stroke={1.5} />
 							{#if feature.highlight}
 								<Chip type="outline-gradient-light" size="small"
 									>v{feature.onVersion}</Chip
@@ -110,7 +110,7 @@
 				<BasicInfoDisplayGrouped>
 					{#each features.upcoming as feature}
 						<BasicInfoDisplay disabled description={feature.description}>
-							<svelte:component this={feature.icon} size={20} stroke={1.5} />
+							<feature.icon size={20} stroke={1.5} />
 							<Chip type="outline" size="small">v{feature.onVersion}</Chip>
 							{feature.label}
 						</BasicInfoDisplay>

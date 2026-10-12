@@ -1,9 +1,20 @@
 <script lang="ts">
 	import { tooltip } from "@svelte-plugins/tooltips";
-	export let description: string | null = null;
-	export let url: string | null = null;
-	export let urlTarget: "_self" | "_blank" | "_parent" | "_top" = "_self";
-	export let disabled = false;
+	interface Props {
+		description?: string | null;
+		url?: string | null;
+		urlTarget?: "_self" | "_blank" | "_parent" | "_top";
+		disabled?: boolean;
+		children?: import("svelte").Snippet;
+	}
+
+	let {
+		description = null,
+		url = null,
+		urlTarget = "_self",
+		disabled = false,
+		children
+	}: Props = $props();
 </script>
 
 {#if description !== null}
@@ -17,11 +28,11 @@
 			animation: "slide"
 		}}
 	>
-		<slot />
+		{@render children?.()}
 	</a>
 {:else}
 	<a href={url} class="infoDisplay">
-		<slot />
+		{@render children?.()}
 	</a>
 {/if}
 

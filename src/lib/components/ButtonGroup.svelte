@@ -1,9 +1,14 @@
-<script>
-	export let type = "horizontal";
+<script lang="ts">
+	interface Props {
+		type?: string;
+		children?: import("svelte").Snippet;
+	}
+
+	let { type = "horizontal", children }: Props = $props();
 </script>
 
 <div class="buttonGroup buttonGroup--type-{type}">
-	<slot />
+	{@render children?.()}
 </div>
 
 <style lang="scss">

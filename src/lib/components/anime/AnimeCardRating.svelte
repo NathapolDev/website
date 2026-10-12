@@ -1,9 +1,13 @@
 <script lang="ts">
 	import { IconStar, IconHash } from "@tabler/icons-svelte";
 
-	export let score: number | null = 0;
-	export let scoredBy: number | null = 0;
-	export let rank: number | null = 0;
+	interface Props {
+		score?: number | null;
+		scoredBy?: number | null;
+		rank?: number | null;
+	}
+
+	let { score = 0, scoredBy = 0, rank = 0 }: Props = $props();
 </script>
 
 <div class="cardAnime__rating">

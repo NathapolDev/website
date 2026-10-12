@@ -1,8 +1,12 @@
-<script>
-	export let type = "circle";
+<script lang="ts">
+	interface Props {
+		type?: string;
+	}
+
+	let { type = "circle" }: Props = $props();
 </script>
 
-<div class="divider divider--type-{type}" />
+<div class="divider divider--type-{type}"></div>
 
 <style lang="scss">
 	.divider {

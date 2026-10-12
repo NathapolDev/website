@@ -5,20 +5,39 @@
 	import AnimeCardRating from "./anime/AnimeCardRating.svelte";
 	import tilt from "./tilt";
 
-	export let mal_id: number = 0;
-	export let imageUrl: string = "";
-	export let rating: string | null = "";
-	export let score: number | null = 0;
-	export let scoredBy: number | null = 0;
-	export let title: string = "";
-	export let season: string | number | null = 0;
-	export let year: number | null = 0;
-	export let genres: { name: string }[] = [];
-	export let status: string = "";
-	export let episodes: number | null = 0;
-	export let rank: number | null = 0;
-	export let skeleton: boolean = false;
-	export let cardExit: boolean = false;
+	interface Props {
+		mal_id?: number;
+		imageUrl?: string;
+		rating?: string | null;
+		score?: number | null;
+		scoredBy?: number | null;
+		title?: string;
+		season?: string | number | null;
+		year?: number | null;
+		genres?: { name: string }[];
+		status?: string;
+		episodes?: number | null;
+		rank?: number | null;
+		skeleton?: boolean;
+		cardExit?: boolean;
+	}
+
+	let {
+		mal_id = 0,
+		imageUrl = "",
+		rating = "",
+		score = 0,
+		scoredBy = 0,
+		title = "",
+		season = 0,
+		year = 0,
+		genres = [],
+		status = "",
+		episodes = 0,
+		rank = 0,
+		skeleton = false,
+		cardExit = false
+	}: Props = $props();
 
 	const STATUS_CLASSES: Record<string, string> = {
 		"Finished Airing": "animeStatus-finished",
@@ -28,8 +47,8 @@
 
 	// Derived from a prop, so this has to stay reactive: the previous onMount
 	// version only ever computed once and ignored later updates to `status`.
-	$: statusClass = STATUS_CLASSES[status] ?? status;
-	$: isCardTransitioning = cardExit ? "cardAnime--exit" : "";
+	let statusClass = $derived(STATUS_CLASSES[status] ?? status);
+	let isCardTransitioning = $derived(cardExit ? "cardAnime--exit" : "");
 </script>
 
 {#if skeleton}

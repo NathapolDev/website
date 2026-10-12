@@ -1,19 +1,28 @@
 <script lang="ts">
-	import { createEventDispatcher } from "svelte";
-	const dispatch = createEventDispatcher();
-	export let type = "primary";
-	export let size = "default";
-	export let url: string | null = null;
-	export let urlTarget: "_self" | "_blank" | "_parent" | "_top" = "_self";
+	interface Props {
+		type?: string;
+		size?: string;
+		url?: string | null;
+		urlTarget?: "_self" | "_blank" | "_parent" | "_top";
+		callback?: (() => void) | null;
+		/** Called on click. Replaces the `message` component event removed in Svelte 5. */
+		onmessage?: (() => void) | null;
+		children?: import("svelte").Snippet;
+	}
 
-	export let callback: (() => void) | null = null;
+	let {
+		type = "primary",
+		size = "default",
+		url = null,
+		urlTarget = "_self",
+		callback = null,
+		onmessage = null,
+		children
+	}: Props = $props();
 
 	function onClick() {
-		dispatch("message", { text: "clicked" });
-
-		if (callback instanceof Function) {
-			callback();
-		}
+		onmessage?.();
+		callback?.();
 	}
 </script>
 
@@ -21,9 +30,9 @@
 	href={url}
 	target={url ? urlTarget : null}
 	class="button button--type-{type} button--size-{size}"
-	on:click={onClick}
+	onclick={onClick}
 >
-	<slot />
+	{@render children?.()}
 </a>
 
 <style lang="scss">

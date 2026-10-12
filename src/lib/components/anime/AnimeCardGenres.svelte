@@ -1,7 +1,11 @@
 <script lang="ts">
 	import Chip from "../Chip.svelte";
 
-	export let genres: { name: string }[] = [];
+	interface Props {
+		genres?: { name: string }[];
+	}
+
+	let { genres = [] }: Props = $props();
 </script>
 
 <div class="cardAnime__genres">

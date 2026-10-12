@@ -3,7 +3,7 @@
 	import { IconHelp } from "@tabler/icons-svelte";
 	import { onMount } from "svelte";
 
-	$: health = "healthy";
+	let health = $state("healthy");
 
 	onMount(() => {
 		fetch("https://api.jikan.moe/v4")
