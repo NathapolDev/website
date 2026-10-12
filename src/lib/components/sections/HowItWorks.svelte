@@ -1,21 +1,9 @@
 <script lang="ts">
-	import Button from "../Button.svelte";
-	import ButtonGroup from "../ButtonGroup.svelte";
+	import DiagramApiCard from "../diagram/DiagramApiCard.svelte";
+	import { IconCode } from "@tabler/icons-svelte";
 	import Chip from "../Chip.svelte";
-	import Divider from "../Divider.svelte";
-	import InputReadOnly from "../InputReadOnly.svelte";
-	import {
-		IconArrowDownLeft,
-		IconCode,
-		IconGitFork,
-		IconHelp,
-		IconInfoCircle,
-		IconStar
-	} from "@tabler/icons-svelte";
-	import { tooltip } from "../../actions/tooltip";
 	import Contributors from "./Contributors.svelte";
 	import type { GithubData } from "../../types/github";
-
 	/**
 	 * Repository stats and contributor avatars, fetched at build time by
 	 * scripts/fetch-github.mjs. Always fully populated: the script emits an
@@ -39,89 +27,28 @@
 
 		<div class="diagram">
 			<div class="diagram__flow">
-				<div class="cardDiagramInfo">
-					<div class="cardDiagramInfo__meta">
-						<div class="type--group-heading-and-subheading">
-							<h6 class="cardDiagramInfo__title">
-								Jikan REST API <Chip type="outline" size="xsmall">v4.2.3</Chip>
-							</h6>
-							<p class="cardDiagramInfo__subtitle">— via Lumen/Laravel</p>
-						</div>
-
-						{#if github.jikan_rest}
-							<div class="cardDiagramInfo__repoStats">
-								<Button
-									urlTarget="_blank"
-									url="https://github.com/jikan-me/jikan-rest"
-									type="link"
-								>
-									<IconStar size={20} stroke={1.5} />
-									{github.jikan_rest.stargazers_count} stars
-								</Button>
-								<Button
-									urlTarget="_blank"
-									url="https://github.com/jikan-me/jikan-rest/forks"
-									type="link"
-								>
-									<IconGitFork size={20} stroke={1.5} />
-									{github.jikan_rest.forks_count} forks
-								</Button>
-							</div>
-						{/if}
-					</div>
-
-					<Divider type="line"></Divider>
-
-					<p class="cardDiagramInfo__about">
+				<DiagramApiCard
+					title="Jikan REST API"
+					version="v4.2.3"
+					subtitle="— via Lumen/Laravel"
+					repo={github.jikan_rest}
+					repoUrl="https://github.com/jikan-me/jikan-rest"
+					docsUrl="https://docs.api.jikan.moe/"
+					installId="docker"
+					installValue="docker pull jikanme/jikan-rest"
+					installUrl="https://hub.docker.com/r/jikanme/jikan-rest"
+					secondary={{
+						url: "https://jikan.docs.apiary.io",
+						label: "Looking for v3 Documentation?",
+						tooltip: "Why are you still looking for this? ಠ_ಠ"
+					}}
+				>
+					{#snippet description()}
 						The REST API is responsible for using the Jikan PHP API to parse MAL It
 						deals with handling the requests and maintaining a queryable database.
 						Anyone can host their own instance of it.
-					</p>
-
-					<div class="cardDiagramInfo__package">
-						<InputReadOnly
-							id="docker"
-							isCopyable
-							value="docker pull jikanme/jikan-rest"
-						/>
-
-						<Button
-							type="tertiary"
-							size="small"
-							url="https://hub.docker.com/r/jikanme/jikan-rest"
-							urlTarget="_blank"
-						>
-							<IconInfoCircle size={20} stroke={1.5} />
-						</Button>
-					</div>
-
-					<ButtonGroup type="stacked">
-						<Button
-							urlTarget="_blank"
-							url="https://docs.api.jikan.moe/"
-							type="primary"
-							size="full-width"
-						>
-							<IconArrowDownLeft class="external-link" size={20} stroke={1.5} />
-							View Documentation
-						</Button>
-
-						<Button
-							type="link"
-							size="small"
-							url="https://jikan.docs.apiary.io"
-							urlTarget="_blank"
-						>
-							Looking for v3 Documentation?
-							<span
-								use:tooltip={{
-									content: "Why are you still looking for this? ಠ_ಠ",
-									animation: "slide"
-								}}><IconHelp size={20} stroke={1.5} /></span
-							>
-						</Button>
-					</ButtonGroup>
-				</div>
+					{/snippet}
+				</DiagramApiCard>
 
 				<div class="connector connector--horizontal">
 					<div class="connector__node"></div>
@@ -257,75 +184,24 @@
 					<div class="connector__node"></div>
 				</div>
 
-				<div class="cardDiagramInfo">
-					<div class="cardDiagramInfo__meta">
-						<div class="type--group-heading-and-subheading">
-							<h6 class="cardDiagramInfo__title">
-								Jikan PHP API <Chip type="outline" size="xsmall">v4.0.11</Chip>
-							</h6>
-							<p class="cardDiagramInfo__subtitle">— Parser API</p>
-						</div>
-
-						{#if github.jikan}
-							<div class="cardDiagramInfo__repoStats">
-								<Button
-									urlTarget="_blank"
-									url="https://github.com/jikan-me/jikan"
-									type="link"
-								>
-									<IconStar size={20} stroke={1.5} />
-									{github.jikan.stargazers_count} stars
-								</Button>
-								<Button
-									urlTarget="_blank"
-									url="https://github.com/jikan-me/jikan/forks"
-									type="link"
-								>
-									<IconGitFork size={20} stroke={1.5} />
-									{github.jikan.forks_count} forks
-								</Button>
-							</div>
-						{/if}
-					</div>
-
-					<Divider type="line"></Divider>
-
-					<p class="cardDiagramInfo__about">
-						The PHP API is the parser itself. It’s responsible for scraping data
+				<DiagramApiCard
+					title="Jikan PHP API"
+					version="v4.0.11"
+					subtitle="— Parser API"
+					repo={github.jikan}
+					repoUrl="https://github.com/jikan-me/jikan"
+					docsUrl="https://docs.jikan.moe/"
+					installId="composer"
+					installValue="composer install jikan-me/jikan"
+					installUrl="https://packagist.org/packages/jikan-me/jikan"
+				>
+					{#snippet description()}
+						The PHP API is the parser itself. It's responsible for scraping data
 						available on public MyAnimeList.net pages.
-						<br /><br />It returns the parsed data as per the request’s respective
+						<br /><br />It returns the parsed data as per the request's respective
 						model.
-					</p>
-
-					<div class="cardDiagramInfo__package">
-						<InputReadOnly
-							id="composer"
-							isCopyable
-							value="composer install jikan-me/jikan"
-						/>
-
-						<Button
-							type="tertiary"
-							size="small"
-							urlTarget="_blank"
-							url="https://packagist.org/packages/jikan-me/jikan"
-						>
-							<IconInfoCircle size={20} stroke={1.5} />
-						</Button>
-					</div>
-
-					<ButtonGroup type="stacked">
-						<Button
-							urlTarget="_blank"
-							url="https://docs.jikan.moe/"
-							type="primary"
-							size="full-width"
-						>
-							<IconArrowDownLeft class="external-link" size={20} stroke={1.5} />
-							View Documentation
-						</Button>
-					</ButtonGroup>
-				</div>
+					{/snippet}
+				</DiagramApiCard>
 			</div>
 
 			<Contributors contributors={github.contributors} />
