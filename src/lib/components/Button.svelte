@@ -6,6 +6,8 @@
 		url?: string | null;
 		urlTarget?: "_self" | "_blank" | "_parent" | "_top";
 		callback?: (() => void) | null;
+		/** Forwarded to the element - icon-only buttons have no text of their own. */
+		"aria-label"?: string | null;
 		/** Called on click. Replaces the `message` component event removed in Svelte 5. */
 		onmessage?: (() => void) | null;
 		children?: import("svelte").Snippet;
@@ -17,8 +19,10 @@
 		url = null,
 		urlTarget = "_self",
 		callback = null,
+		"aria-label": ariaLabel = null,
 		onmessage = null,
-		children
+		children,
+		...rest
 	}: Props = $props();
 
 	function onClick() {
@@ -27,14 +31,34 @@
 	}
 </script>
 
-<a
-	href={href(url)}
-	target={url ? urlTarget : null}
-	class="button button--type-{type} button--size-{size}"
-	onclick={onClick}
->
-	{@render children?.()}
-</a>
+<!--
+	A control that navigates is an anchor; a control that acts on the page is a
+	button. This used to always render an <a>, so anything without a url - the
+	nav's mobile trigger, for instance - produced an anchor with no href, which
+	is neither focusable nor announced as a button.
+-->
+{#if url}
+	<a
+		href={href(url)}
+		target={urlTarget}
+		class="button button--type-{type} button--size-{size}"
+		aria-label={ariaLabel}
+		{...rest}
+		onclick={onClick}
+	>
+		{@render children?.()}
+	</a>
+{:else}
+	<button
+		type="button"
+		class="button button--type-{type} button--size-{size}"
+		aria-label={ariaLabel}
+		{...rest}
+		onclick={onClick}
+	>
+		{@render children?.()}
+	</button>
+{/if}
 
 <style lang="scss">
 	.button {

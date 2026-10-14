@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Button from "./Button.svelte";
+	import IconButton from "./IconButton.svelte";
 	import {
 		IconArrowDownLeft,
 		IconBrandDiscord,
@@ -26,13 +27,16 @@
 		<div class="nav__top">
 			<a href="/" class="logo"><Logo /></a>
 			<div id="mobile-nav">
-				<Button type="nav-trigger" size="small" callback={toggleMobileNav}>
+				<IconButton
+					callback={toggleMobileNav}
+					label={mobileNavToggled ? "Close the menu" : "Open the menu"}
+				>
 					{#if mobileNavToggled}
 						<IconX size={25} stroke={1.5} />
 					{:else}
 						<IconMenu size={25} stroke={1.5} />
 					{/if}
-				</Button>
+				</IconButton>
 			</div>
 		</div>
 		<div class="nav__bodyWrapper">
@@ -50,20 +54,12 @@
 				</div>
 
 				<div class="links">
-					<Button
-						type="nav-icon-link"
-						size="small"
-						urlTarget="_blank"
-						url="http://discord.jikan.moe/"
-						><IconBrandDiscord size={20} stroke={1.5} /></Button
-					>
-					<Button
-						type="nav-icon-link"
-						size="small"
-						urlTarget="_blank"
-						url="https://github.com/jikan-me"
-						><IconBrandGithub size={20} stroke={1.5} /></Button
-					>
+					<IconButton url="http://discord.jikan.moe/" label="Join the Jikan Discord">
+						<IconBrandDiscord size={20} stroke={1.5} />
+					</IconButton>
+					<IconButton url="https://github.com/jikan-me" label="Jikan on GitHub">
+						<IconBrandGithub size={20} stroke={1.5} />
+					</IconButton>
 					<ThemeToggle />
 				</div>
 			</div>

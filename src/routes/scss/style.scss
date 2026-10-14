@@ -76,6 +76,23 @@
 	}
 }
 
+// The response demo band. It sits below the two columns so the install steps
+// stay the first thing a reader sees, with the cards as supporting evidence.
+.hero__demo {
+	width: var(--content-width);
+	max-width: 100%;
+	margin: 0 auto;
+	padding-bottom: 48px;
+
+	.request {
+		justify-content: flex-start;
+	}
+
+	.cards {
+		max-width: 100%;
+	}
+}
+
 .featuresWrapper {
 	padding: 100px 0;
 	align-items: center;

@@ -6,6 +6,7 @@
 	import BasicInfoDisplayGrouped from "../DataDisplay/BasicInfoDisplayGrouped.svelte";
 	import Marquee from "../Marquee.svelte";
 	import InstallCli from "../InstallCli.svelte";
+	import RequestExamples from "../RequestExamples.svelte";
 	import {
 		IconApi,
 		IconArrowDownLeft,
@@ -90,6 +91,12 @@
 			<InstallCli />
 		</div>
 	</main>
+
+	<!-- The response demo sits under the two columns rather than beside them: the
+	     install steps lead, and this shows what a Jikan response looks like. -->
+	<div class="hero__demo">
+		<RequestExamples />
+	</div>
 
 	<Marquee />
 </section>
