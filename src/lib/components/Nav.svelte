@@ -4,7 +4,6 @@
 		IconArrowDownLeft,
 		IconBrandDiscord,
 		IconBrandGithub,
-		IconBrandPatreon,
 		IconMenu,
 		IconX
 	} from "@tabler/icons-svelte";
@@ -51,13 +50,6 @@
 				</div>
 
 				<div class="links">
-					<Button
-						type="nav-icon-link"
-						size="small"
-						urlTarget="_blank"
-						url="https://patreon.com/jikan"
-						><IconBrandPatreon size={20} stroke={1.5} /></Button
-					>
 					<Button
 						type="nav-icon-link"
 						size="small"

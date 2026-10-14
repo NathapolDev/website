@@ -53,11 +53,7 @@
 								>GitHub Org</Button
 							>
 						</li>
-						<li>
-							<Button url="https://patreon.com/jikan" urlTarget="_blank" type="link"
-								>Patreon</Button
-							>
-						</li>
+						<li></li>
 						<li>
 							<Button
 								url="https://www.reddit.com/r/jikan/"

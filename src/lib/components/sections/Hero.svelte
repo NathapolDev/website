@@ -1,6 +1,5 @@
 <script>
 	import SectionHeading from "../SectionHeading.svelte";
-	import InlineBanner from "../InlineBanner.svelte";
 	import Button from "../Button.svelte";
 	import ButtonGroup from "../ButtonGroup.svelte";
 	import BasicInfoDisplay from "../DataDisplay/BasicInfoDisplay.svelte";
@@ -21,10 +20,6 @@
 <section class="hero">
 	<main>
 		<div class="left">
-			<InlineBanner type="patreon" url="https://patreon.com/jikan"
-				>We rely on you! Support us on Patreon</InlineBanner
-			>
-
 			<SectionHeading level={1}>
 				{#snippet title()}Jikan API{/snippet}
 				{#snippet subtitle()}Jikan (時間) is an unofficial & open-source API for the <strong

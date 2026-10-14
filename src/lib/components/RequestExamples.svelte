@@ -5,25 +5,25 @@
 	import { onMount } from "svelte";
 	import math from "../helpers/math";
 	import funcs from "../helpers/funcs";
-	import { fly } from "svelte/transition";
 
 	/** How long a result set stays on screen before rotating to the next URL. */
 	const ROTATE_MS = 10000;
 
-	// Anime is captured at build time by scripts/fetch-anime.mjs rather than
-	// fetched from api.jikan.moe in the browser. That request used to hang
-	// whenever the API was unreachable, leaving skeletons on screen forever.
-	import anime from "../../data/generated/anime.json";
+	// Demo content. Previously fetched from api.jikan.moe at build time, which
+	// meant the page silently degraded to a committed snapshot whenever the API
+	// was unreachable - i.e. almost always. What this section demonstrates is the
+	// shape of a Jikan response, so the rows are hardcoded.
+	import { heroAnime } from "../../data/hero-anime";
 
 	let requests = $state([
-		"https://api.jikan.moe/v4/anime?q=bleach&sfw",
-		"https://api.jikan.moe/v4/anime?q=%E6%96%B0%E4%B8%96%E7%B4%80&sfw",
-		"https://api.jikan.moe/v4/seasons/now?sfw",
-		"https://api.jikan.moe/v4/top/anime?sfw",
-		"https://api.jikan.moe/v4/seasons/upcoming",
-		"https://api.jikan.moe/v4/top/anime?type=movie",
-		"https://api.jikan.moe/v4/top/anime?type=ova",
-		"https://api.jikan.moe/v4/top/anime?type=ona"
+		"/v4/anime?q=bleach&sfw",
+		"/v4/anime?q=%E6%96%B0%E4%B8%96%E7%B4%80&sfw",
+		"/v4/seasons/now?sfw",
+		"/v4/top/anime?sfw",
+		"/v4/seasons/upcoming",
+		"/v4/top/anime?type=movie",
+		"/v4/top/anime?type=ova",
+		"/v4/top/anime?type=ona"
 	]);
 
 	let requestIndex = $state(0);
@@ -50,28 +50,21 @@
 		genres: { name: string }[];
 	}
 
-	let entries = $state<AnimeEntry[]>(anime.entries);
+	let entries = $state<AnimeEntry[]>(heroAnime);
 	let showCards = $derived(entries.length > 0);
 	let isCardTransitioning = $state(false);
-	// Measured when the data was captured, so the figure is honest about being
-	// build-time rather than pretending to be a live round trip.
-	let requestDuration = $derived(anime.durationMs);
-	let showDuration = $state(false);
 
 	onMount(() => {
 		// A few random historical seasons, plus today's schedule.
 		for (let i = 0; i <= math.randomInteger(2, 4); i++) {
 			const randomYear = math.randomInteger(2005, new Date().getFullYear() - 1);
 			const seasons = ["spring", "summer", "fall", "winter"];
-			requests.push(
-				`https://api.jikan.moe/v4/seasons/${randomYear}/${seasons[math.randomInteger(0, 3)]}?sfw`
-			);
+			requests.push(`/v4/seasons/${randomYear}/${seasons[math.randomInteger(0, 3)]}?sfw`);
 		}
 		const today = new Date().toLocaleString("en-us", { weekday: "long" }).toLowerCase();
-		requests.push(`https://api.jikan.moe/v4/schedules/${today}?sfw`);
+		requests.push(`/v4/schedules/${today}?sfw`);
 
 		requests = funcs.shuffle(requests);
-		showDuration = true;
 
 		// The rotation timer outlives several typewriter cycles, so it has to be
 		// cleared when the component goes away rather than left running.
@@ -91,14 +84,9 @@
 	     alone would leave the old URL on screen. {#key} remounts it instead. -->
 	{#key requestUrl}
 		<Typewriter mode="loopOnce" keepCursorOnFinish={true} interval={20} unwriteInterval={5}
-			><a href={requestUrl} target="_blank"><code>{requestUrl}</code></a></Typewriter
+			><code>{requestUrl}</code></Typewriter
 		>
 	{/key}
-	{#if showDuration && requestDuration}
-		<span transition:fly={{ delay: 0, duration: 150, x: -32 }} class="duration"
-			>{requestDuration}ms</span
-		>
-	{/if}
 </div>
 
 <div class="cards">
