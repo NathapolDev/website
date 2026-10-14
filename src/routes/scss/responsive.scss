@@ -151,18 +151,24 @@
 
 		main {
 			display: flex;
-			flex-direction: row;
-			justify-content: center;
-			align-items: center;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: stretch;
+			gap: 48px;
+			padding-top: 140px;
 
+			// The request example and the cards used to be display: none at this
+			// width, so on every phone and tablet the hero showed only the
+			// headline and nothing demonstrating the API. They now stack under
+			// the copy instead.
 			.left {
-				height: fit-content;
-				justify-self: center;
-				align-self: center;
+				height: auto;
+				justify-self: stretch;
+				align-self: stretch;
 			}
 
 			.right {
-				display: none;
+				display: flex;
 			}
 		}
 	}

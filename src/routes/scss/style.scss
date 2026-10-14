@@ -32,8 +32,9 @@
 			display: flex;
 			flex-direction: column;
 			gap: 16px;
-			height: 500px;
-			transform: translateX(100px);
+			// Height and transform were fixed for the old 3x2 grid; both pushed
+			// content out of the layout rather than letting it flow.
+			height: auto;
 
 			.duration {
 				font-size: var(--type-size-body-assistive);
@@ -54,15 +55,21 @@
 					letter-spacing: 1px;
 				}
 			}
+			// As many ~260px columns as fit, collapsing to one below that. The
+			// grid previously had a fixed 1200px width, which pushed two of the
+			// six cards past the right edge where the hero's overflow: hidden
+			// silently clipped them.
 			.cards {
-				display: flex;
-				flex-wrap: wrap;
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
 				gap: 16px;
-				width: 1200px;
-				height: 450px;
+				width: 100%;
 
-				.cardAnime:nth-child(4) {
-					margin-left: 32px;
+				// .cardAnime carries min-width: 300px, and a minimum wins over a
+				// grid track - so the cards kept their full size and overflowed the
+				// tracks instead of fitting them. Let the track drive the size.
+				.cardAnime {
+					min-width: 0;
 				}
 			}
 		}
