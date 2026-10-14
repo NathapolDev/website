@@ -55,9 +55,10 @@
 	<div class="cardAnime cardAnime--skeleton {isCardTransitioning}"></div>
 {:else}
 	<a
-		href="https://api.jikan.moe/v4/anime/{mal_id}"
+		href={"https://myanimelist.net/anime/" + mal_id}
 		class="cardAnime {isCardTransitioning}"
 		target="_blank"
+		rel="noopener"
 		use:tilt={{ scale: 1, reverse: true }}
 	>
 		<AnimeCardCover {imageUrl} {title} {rating} />

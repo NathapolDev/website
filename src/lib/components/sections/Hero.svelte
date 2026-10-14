@@ -11,7 +11,6 @@
 		IconArrowDownLeft,
 		IconBrandDiscord,
 		IconBrandPhp,
-		IconChartLine,
 		IconKeyOff,
 		IconPackages
 	} from "@tabler/icons-svelte";
@@ -65,12 +64,6 @@
 				>
 					<IconBrandDiscord size={20} stroke={1.5} />
 					Community Support
-				</BasicInfoDisplay>
-				<BasicInfoDisplay
-					description="We're handling over 25~30+ million requests per week!"
-				>
-					<IconChartLine size={20} stroke={1.5} />
-					100M+ requests / month
 				</BasicInfoDisplay>
 			</BasicInfoDisplayGrouped>
 

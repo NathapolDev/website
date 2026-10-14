@@ -2,7 +2,6 @@
 	import Button from "./Button.svelte";
 	import { IconArrowDownLeft, IconGitFork } from "@tabler/icons-svelte";
 	import Logo from "../images/Logo.svelte";
-	import MalHeartBeat from "./MalHeartBeat.svelte";
 </script>
 
 <footer class="footer">
@@ -11,8 +10,6 @@
 			<div class="footer__brand">
 				<a href="https://jikan.moe" class="logo"><Logo /></a>
 				<p>Unofficial MyAnimeList API</p>
-
-				<MalHeartBeat />
 			</div>
 
 			<div class="footer__linksWrapper">
