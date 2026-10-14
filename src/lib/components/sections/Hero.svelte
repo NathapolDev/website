@@ -5,13 +5,14 @@
 	import BasicInfoDisplay from "../DataDisplay/BasicInfoDisplay.svelte";
 	import BasicInfoDisplayGrouped from "../DataDisplay/BasicInfoDisplayGrouped.svelte";
 	import Marquee from "../Marquee.svelte";
-	import RequestExamples from "../RequestExamples.svelte";
+	import InstallCli from "../InstallCli.svelte";
 	import {
 		IconApi,
 		IconArrowDownLeft,
 		IconBrandDiscord,
 		IconBrandPhp,
 		IconKeyOff,
+		IconTerminal,
 		IconPackages
 	} from "@tabler/icons-svelte";
 </script>
@@ -20,10 +21,9 @@
 	<main>
 		<div class="left">
 			<SectionHeading level={1}>
-				{#snippet title()}Jikan API{/snippet}
-				{#snippet subtitle()}Jikan (時間) is an unofficial & open-source API for the <strong
-						>“most active online anime + manga community and database”</strong
-					> — MyAnimeList.{/snippet}
+				{#snippet title()}Jikan{/snippet}
+				{#snippet subtitle()}Run your own MyAnimeList API. Self-host the REST API with
+					Docker — your data, your rate limits, no middleman.{/snippet}
 			</SectionHeading>
 
 			<BasicInfoDisplayGrouped>
@@ -58,6 +58,12 @@
 					Auth-less
 				</BasicInfoDisplay>
 				<BasicInfoDisplay
+					description="One script brings up MongoDB, Typesense, Redis and the API workers."
+				>
+					<IconTerminal size={20} stroke={1.5} />
+					Self-hosted
+				</BasicInfoDisplay>
+				<BasicInfoDisplay
 					url="https://discord.jikan.moe"
 					urlTarget="_blank"
 					description="Click to join our discord server for help or just come say hi ✌️"
@@ -81,7 +87,7 @@
 			</ButtonGroup>
 		</div>
 		<div class="right">
-			<RequestExamples />
+			<InstallCli />
 		</div>
 	</main>
 
