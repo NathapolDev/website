@@ -29,12 +29,6 @@
 								><IconArrowDownLeft class="external-link" size={20} stroke={1.5} /> Documentation</Button
 							>
 						</li>
-						<li>
-							<Button urlTarget="_blank" type="link"
-								><IconArrowDownLeft class="external-link" size={20} stroke={1.5} /> Status</Button
-							>
-						</li>
-						<li><Button url="#" type="link">Terms of Use</Button></li>
 					</ul>
 				</div>
 				<div class="footer__links">
@@ -50,7 +44,6 @@
 								>GitHub Org</Button
 							>
 						</li>
-						<li></li>
 						<li>
 							<Button
 								url="https://www.reddit.com/r/jikan/"
@@ -67,7 +60,7 @@
 
 <div class="copyright">
 	<div class="copyright__content">
-		<span>2017 - 2024 Jikan.moe</span>
+		<span>2017 - {new Date().getFullYear()} Jikan.moe</span>
 		<span
 			>This website is open-source. <Button
 				type="link"
