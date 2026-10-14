@@ -1,7 +1,57 @@
-<script>
+<script lang="ts">
 	import Button from "./Button.svelte";
 	import { IconArrowDownLeft, IconGitFork } from "@tabler/icons-svelte";
 	import Logo from "../images/Logo.svelte";
+
+	/**
+	 * The footer's link columns.
+	 *
+	 * These used to be three hand-written <div> blocks. They drifted: one had an
+	 * empty <li> placeholder, another had a link with no href, and they had to be
+	 * edited in parallel by hand. Declaring them once keeps that from happening.
+	 */
+	/** One footer link. `external` gets target="_blank", `icon` shows the arrow. */
+	interface FooterLink {
+		label: string;
+		url: string;
+		external?: boolean;
+		icon?: boolean;
+	}
+
+	interface FooterColumn {
+		heading: string;
+		links: FooterLink[];
+	}
+
+	const FOOTER_LINKS: FooterColumn[] = [
+		{
+			heading: "General",
+			links: [
+				{ label: "Features", url: "/#features" },
+				{ label: "Showcase", url: "/showcase" },
+				{ label: "Integrations", url: "/#integrations" }
+			]
+		},
+		{
+			heading: "Developers",
+			links: [
+				{
+					label: "Documentation",
+					url: "https://docs.api.jikan.moe/",
+					external: true,
+					icon: true
+				}
+			]
+		},
+		{
+			heading: "Community",
+			links: [
+				{ label: "Discord", url: "http://discord.jikan.moe/", external: true },
+				{ label: "GitHub Org", url: "https://github.com/jikan-me", external: true },
+				{ label: "Reddit", url: "https://www.reddit.com/r/jikan/", external: true }
+			]
+		}
+	];
 </script>
 
 <footer class="footer">
@@ -13,46 +63,28 @@
 			</div>
 
 			<div class="footer__linksWrapper">
-				<div class="footer__links">
-					<strong>General</strong>
-					<ul>
-						<li><Button url="/#features" type="link">Features</Button></li>
-						<li><Button url="/showcase" type="link">Showcase</Button></li>
-						<li><Button url="/#integrations" type="link">Integrations</Button></li>
-					</ul>
-				</div>
-				<div class="footer__links">
-					<strong>Developers</strong>
-					<ul>
-						<li>
-							<Button url="https://docs.api.jikan.moe/" urlTarget="_blank" type="link"
-								><IconArrowDownLeft class="external-link" size={20} stroke={1.5} /> Documentation</Button
-							>
-						</li>
-					</ul>
-				</div>
-				<div class="footer__links">
-					<strong>Community</strong>
-					<ul>
-						<li>
-							<Button url="http://discord.jikan.moe/" urlTarget="_blank" type="link"
-								>Discord</Button
-							>
-						</li>
-						<li>
-							<Button url="https://github.com/jikan-me" urlTarget="_blank" type="link"
-								>GitHub Org</Button
-							>
-						</li>
-						<li>
-							<Button
-								url="https://www.reddit.com/r/jikan/"
-								urlTarget="_blank"
-								type="link">Reddit</Button
-							>
-						</li>
-					</ul>
-				</div>
+				{#each FOOTER_LINKS as column (column.heading)}
+					<div class="footer__links">
+						<strong>{column.heading}</strong>
+						<ul>
+							{#each column.links as link (link.url)}
+								<li>
+									<Button
+										url={link.url}
+										urlTarget={link.external ? "_blank" : "_self"}
+										type="link"
+									>
+										{#if link.icon}<IconArrowDownLeft
+												size={20}
+												stroke={1.5}
+											/>{/if}
+										{link.label}
+									</Button>
+								</li>
+							{/each}
+						</ul>
+					</div>
+				{/each}
 			</div>
 		</div>
 	</div>
