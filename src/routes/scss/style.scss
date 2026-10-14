@@ -326,12 +326,14 @@
 	&__request {
 		font-size: 12px;
 		margin-top: 6px;
-		// This row sits on the code surface, so it cannot follow the page text
-		// colour - in the light theme that put dark text on a near-black panel.
-		color: var(--surface-code-fg);
+		color: var(--typography-100);
 
 		code {
-			color: inherit;
+			// The endpoint is not a link any more - it has no host to resolve to -
+			// so it is styled as inline code rather than as a hyperlink.
+			color: var(--primary-500);
+			font-family: "IBM Plex Mono", monospace;
+			font-size: inherit;
 		}
 	}
 

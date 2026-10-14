@@ -24,8 +24,6 @@
 	--dark-typography-200: var(--primary-200);
 	--dark-typography-300: #99a8c9;
 	--dark-typography-400: #8998b8;
-	--dark-border-patreon-gradient-color-start: #ff424d;
-	--dark-border-patreon-gradient-color-stop: var(--dark-primary-500);
 	--dark-border-default-gradient-color-start: var(--dark-primary-200);
 	--dark-border-default-gradient-color-stop: var(--dark-primary-500);
 	--dark-cursor-color: var(--typography-300);
@@ -102,8 +100,6 @@
 	--light-typography-200: #262d3a;
 	--light-typography-300: #4f5a6e;
 	--light-typography-400: #5d6878;
-	--light-border-patreon-gradient-color-start: #ff424d;
-	--light-border-patreon-gradient-color-stop: var(--primary-500);
 	--light-border-default-gradient-color-start: var(--primary-200);
 	--light-border-default-gradient-color-stop: var(--primary-500);
 	--light-cursor-color: #262d3a;
@@ -143,8 +139,6 @@
 	--typography-200: var(--dark-typography-200);
 	--typography-300: var(--dark-typography-300);
 	--typography-400: var(--dark-typography-400);
-	--border-patreon-gradient-color-start: var(--dark-border-patreon-gradient-color-start);
-	--border-patreon-gradient-color-stop: var(--dark-border-patreon-gradient-color-stop);
 	--border-default-gradient-color-start: var(--dark-border-default-gradient-color-start);
 	--border-default-gradient-color-stop: var(--dark-border-default-gradient-color-stop);
 	--cursor-color: var(--dark-cursor-color);
@@ -175,8 +169,6 @@
 	--typography-200: var(--light-typography-200);
 	--typography-300: var(--light-typography-300);
 	--typography-400: var(--light-typography-400);
-	--border-patreon-gradient-color-start: var(--light-border-patreon-gradient-color-start);
-	--border-patreon-gradient-color-stop: var(--light-border-patreon-gradient-color-stop);
 	--border-default-gradient-color-start: var(--light-border-default-gradient-color-start);
 	--border-default-gradient-color-stop: var(--light-border-default-gradient-color-stop);
 	--cursor-color: var(--light-cursor-color);
@@ -360,11 +352,6 @@ a:visited {
 	}
 }
 
-// Overrides
-.external-link {
-	transform: rotate(180deg);
-}
-
 .input {
 	&--read-only {
 		box-sizing: border-box;
@@ -455,8 +442,6 @@ a:visited {
 	--typography-200: var(--light-typography-200);
 	--typography-300: var(--light-typography-300);
 	--typography-400: var(--light-typography-400);
-	--border-patreon-gradient-color-start: var(--light-border-patreon-gradient-color-start);
-	--border-patreon-gradient-color-stop: var(--light-border-patreon-gradient-color-stop);
 	--border-default-gradient-color-start: var(--light-border-default-gradient-color-start);
 	--border-default-gradient-color-stop: var(--light-border-default-gradient-color-stop);
 	--cursor-color: var(--light-cursor-color);
